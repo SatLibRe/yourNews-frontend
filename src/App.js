@@ -5,7 +5,7 @@ import Login from "./routes/Login.js"
 import Home from "./routes/Home.js"
 import SelectInterests from "./routes/SelectInterests.js"
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import { Redirect } from "react-router-dom"
+import { Redirect, useHistory } from "react-router-dom"
 
 
 class App extends React.Component {
@@ -14,6 +14,7 @@ class App extends React.Component {
     currentUser: null,
     sources: [],
     countries: [],
+    reload: false
   }
 
   setUser = (response) => {
@@ -46,7 +47,12 @@ class App extends React.Component {
             source_id: response.id
           })
         })
-      }).then(this.props.history.push("/"))
+      }).then(() => {
+        this.props.history.push("/home")
+        this.setState({
+          reload: true
+        })
+      })
     })
   }
 
@@ -65,11 +71,11 @@ class App extends React.Component {
 
   render(){
     return (
-      <Router>
-        <Route exact path="/" component={Home} />
-        {/* <Route path="/login" component={Login } /> */}
+      <Router >
+        {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
         <Route path='/selectinterests' render={(props) => <SelectInterests {...props} history={this.history} checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
+        <Route path='/home' render={(props) => <Home {...props} />} />
       </Router>
     );
   }

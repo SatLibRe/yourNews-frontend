@@ -33,6 +33,7 @@ class Login extends React.Component {
     }
 
     render(){
+        console.log(this.props.history)
         return(
             <SignInSide handleLoginFormChange={this.handleLoginFormChange} handleSubmit={this.handleSubmit}/>
         )
