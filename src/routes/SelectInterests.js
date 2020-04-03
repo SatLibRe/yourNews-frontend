@@ -20,16 +20,16 @@ class SelectInterests extends React.Component {
         checked: false
     }
       
-    // componentDidMount(){
-    //     fetch(`https://newsapi.org/v2/sources?apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
-    //     .then(response => response.json())
-    //     .then(response => {
-    //         console.log(response)
-    //         this.setState({
-    //         sources: response.sources
-    //     })
-    //   })
-    // }
+    componentDidMount(){
+        fetch(`https://newsapi.org/v2/sources?apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+        .then(response => response.json())
+        .then(response => {
+            console.log(response)
+            this.setState({
+            sources: response.sources
+        })
+      })
+    }
 
     render(){
         return(

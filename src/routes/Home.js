@@ -1,4 +1,6 @@
 import React from 'react';
+import SourceContainer from "../containers/SourceContainer"
+import ArticleCard from "../components/ArticleCard"
 
 class Home extends React.Component {
 
@@ -11,7 +13,6 @@ class Home extends React.Component {
         fetch(`http://localhost:3000/users/${localStorage.user_id}`)
         .then(response => response.json())
         .then(response => {
-            console.log(response.sources)
             this.setState({
                 sources: response.sources
             })
@@ -20,9 +21,8 @@ class Home extends React.Component {
                 fetch(`https://newsapi.org/v2/top-headlines?sources=${source.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
                 .then(response => response.json())
                 .then(response => {
-                    console.log(response.articles)
                     this.setState({
-                        sourceHeadlines: response.articles
+                        sourceHeadlines: [...this.state.sourceHeadlines,response.articles]
                     })
                 })
         }))
@@ -30,9 +30,8 @@ class Home extends React.Component {
 
     render(){
         return(
-            <ul>
-                {this.state.sourceHeadlines.map(article => <li key={article.id}> {article.title}</li>)}
-            </ul>
+          <SourceContainer sourceHeadlines={this.state.sourceHeadlines}/>
+        //   {this.state.sourceHeadlines.map(publisher => publisher.map( article => <p> {article.title}</p> ))}
         )
     }
 }
