@@ -17,7 +17,7 @@ class SelectInterests extends React.Component {
             "ar",
             "cn"
         ],
-        checked: false
+        checked: false,
     }
       
     componentDidMount(){
@@ -52,6 +52,11 @@ class SelectInterests extends React.Component {
                     onChange={this.props.handleCountriesInputChange} 
                 />
                 </label> )}
+                <br></br>
+                <label>
+                    Custom News
+                    <input type="text" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
+                </label>
                 <input type="submit" value="Submit" />
             </form>
         )

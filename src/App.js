@@ -14,7 +14,8 @@ class App extends React.Component {
     currentUser: null,
     sources: [],
     countries: [],
-    reload: false
+    reload: false,
+    custom1: ""
   }
 
   setUser = (response) => {
@@ -94,12 +95,19 @@ class App extends React.Component {
     })
   }
 
+  handleCustomFormChange = e => {
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
+
+
   render(){
     return (
       <Router >
         {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route path='/selectinterests' render={(props) => <SelectInterests {...props} history={this.history} checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
+        <Route path='/selectinterests' render={(props) => <SelectInterests {...props} custom1={this.state.custom1} handleCustomFormChange={this.handleCustomFormChange} history={this.history} checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
         <Route path='/home' render={(props) => <Home {...props} />} />
       </Router>
     );
