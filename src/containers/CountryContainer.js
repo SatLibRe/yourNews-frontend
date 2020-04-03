@@ -8,7 +8,7 @@ class SourceContainer extends React.Component {
         return(
             <div className="source-container">
                 <h1> Countries Followed: </h1>
-                {/* <ArticleCard /> */}
+                {this.props.countryHeadLines.map(publisher => publisher.map( article => <ArticleCard article={article}/> ))}
             </div>
         )
     }

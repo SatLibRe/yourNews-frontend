@@ -9,7 +9,7 @@ class Home extends React.Component {
         sources: [],
         sourceHeadlines: [],
         countries: [],
-        countryHeadines: []
+        countryHeadlines: []
     }
 
     componentDidMount(){
@@ -35,7 +35,7 @@ class Home extends React.Component {
                 .then(response => response.json())
                 .then( response => {
                     this.setState({
-                        countryHeadines: [...this.state.countryHeadines,response.articles]
+                        countryHeadlines: [...this.state.countryHeadlines,response.articles]
                     })
                 })
         }))
