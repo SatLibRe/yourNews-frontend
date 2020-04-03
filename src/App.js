@@ -26,6 +26,31 @@ class App extends React.Component {
 
   handleSelectInterests = (e) => {
     e.preventDefault()
+
+    this.state.countries.forEach(country => {
+      fetch("http://localhost:3000/countries", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          name: country
+        })
+      }).then(response => response.json())
+      .then(response => {
+        fetch(`http://localhost:3000/countryusers`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            user_id: localStorage.user_id,
+            country_id: response.id
+          })
+        })
+      })
+    })
+    
     this.state.sources.forEach(source =>{
       fetch(`http://localhost:3000/sources`, {
         method: 'POST',

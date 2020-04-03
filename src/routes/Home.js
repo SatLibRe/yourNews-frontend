@@ -6,15 +6,18 @@ class Home extends React.Component {
 
     state = {
         sources: [],
-        sourceHeadlines: []
+        sourceHeadlines: [],
+        countries: []
     }
 
     componentDidMount(){
         fetch(`http://localhost:3000/users/${localStorage.user_id}`)
         .then(response => response.json())
         .then(response => {
+            console.log(response)
             this.setState({
-                sources: response.sources
+                sources: response.sources, 
+                countries: response.countries
             })
         }).then( () => this.state.sources.forEach(source => 
             {
