@@ -6,7 +6,8 @@ class SourceContainer extends React.Component {
 
     render(){
         return(
-            <div style={{border: "solid"}}>
+            <div className="source-container">
+                <h1> Sources Followed: </h1>
                 {this.props.sourceHeadlines.map(publisher => publisher.map( article => <ArticleCard article={article}/> ))}
             </div>
         )

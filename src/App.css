@@ -39,5 +39,19 @@
 
 .article-images {
   width: 100px;
-  height: 100px;
+  width: 50vh;
+  display: block;
+}
+
+.article-card-div {
+  border: solid;
+  border-radius: 4%;
+  width: 25%;
+  margin: 5%;
+  z-index: 100;
+}
+
+#source-container {
+  border: solid;
+  width: 25%;
 }
