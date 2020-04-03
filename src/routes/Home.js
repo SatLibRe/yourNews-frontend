@@ -1,5 +1,6 @@
 import React from 'react';
 import SourceContainer from "../containers/SourceContainer"
+import CountryContainer from "../containers/CountryContainer"
 import ArticleCard from "../components/ArticleCard"
 
 class Home extends React.Component {
@@ -7,14 +8,14 @@ class Home extends React.Component {
     state = {
         sources: [],
         sourceHeadlines: [],
-        countries: []
+        countries: [],
+        countryHeadines: []
     }
 
     componentDidMount(){
         fetch(`http://localhost:3000/users/${localStorage.user_id}`)
         .then(response => response.json())
         .then(response => {
-            console.log(response)
             this.setState({
                 sources: response.sources, 
                 countries: response.countries
@@ -28,13 +29,24 @@ class Home extends React.Component {
                         sourceHeadlines: [...this.state.sourceHeadlines,response.articles]
                     })
                 })
+        })).then( () => this.state.countries.forEach(country => 
+            {
+                fetch(`https://newsapi.org/v2/top-headlines?country=${country.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+                .then(response => response.json())
+                .then( response => {
+                    this.setState({
+                        countryHeadines: [...this.state.countryHeadines,response.articles]
+                    })
+                })
         }))
     }
 
     render(){
         return(
+        <React.Fragment>
           <SourceContainer sourceHeadlines={this.state.sourceHeadlines}/>
-        //   {this.state.sourceHeadlines.map(publisher => publisher.map( article => <p> {article.title}</p> ))}
+          <CountryContainer countryHeadLines={this.state.countryHeadlines}/>
+        </React.Fragment>
         )
     }
 }
