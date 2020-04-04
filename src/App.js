@@ -27,6 +27,7 @@ class App extends React.Component {
 
   handleSelectInterests = (e) => {
     e.preventDefault()
+    console.log(e)
 
     this.state.countries.forEach(country => {
       fetch("http://localhost:3000/countries", {
@@ -108,7 +109,7 @@ class App extends React.Component {
         {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
         <Route path='/selectinterests' render={(props) => <SelectInterests {...props} custom1={this.state.custom1} handleCustomFormChange={this.handleCustomFormChange} history={this.history} checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
-        <Route path='/home' render={(props) => <Home {...props} />} />
+        <Route path='/home' render={(props) => <Home custom1={this.state.custom1} {...props} />} />
       </Router>
     );
   }
