@@ -56,6 +56,7 @@ class SelectInterests extends React.Component {
                 <label>
                     Custom News
                     <input type="text" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
+                    <input type="text" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
                 </label>
                 <input type="submit" value="Submit" />
             </form>
