@@ -15,7 +15,12 @@ class SelectInterests extends React.Component {
         countries: [
             "us",
             "ar",
-            "cn"
+            "cn", 
+            "de", 
+            "au",
+            "fr",
+            "ru",
+            "kr"
         ],
         checked: false,
     }

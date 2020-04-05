@@ -15,6 +15,10 @@ class Home extends React.Component {
         customQueryHeadlines: [],
     }
 
+    handleEditClick = () => {
+        this.props.history.push("/selectinterests")
+    }
+
     componentDidMount(){
         fetch(`http://localhost:3000/users/${localStorage.user_id}`)
         .then(response => response.json())
@@ -60,6 +64,7 @@ class Home extends React.Component {
         console.log(this.state.customQueryHeadlines)
         return(
         <React.Fragment>
+            <button onClick={this.handleEditClick}> Edit </button>
           <SourceContainer sourceHeadlines={this.state.sourceHeadlines}/>
           <CountryContainer countryHeadLines={this.state.countryHeadlines}/>
           <CustomNewsContainer customQueryHeadlines={this.state.customQueryHeadlines}/>
