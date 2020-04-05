@@ -28,8 +28,31 @@ class App extends React.Component {
 
   handleSelectInterests = (e) => {
     e.preventDefault()
-    console.log(e)
-
+    
+    if(this.state.custom1.length >= 2){
+      fetch("http://localhost:3000/customqueries", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          name: this.state.custom1,
+        })
+      }).then( response => response.json())
+      .then(response => {
+        fetch("http://localhost:3000/customqueryusers", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            user_id: localStorage.user_id,
+            custom_query_id: response.id
+          })
+        })
+      })
+    }
+  
     this.state.countries.forEach(country => {
       fetch("http://localhost:3000/countries", {
         method: 'POST',

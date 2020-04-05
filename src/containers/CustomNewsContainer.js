@@ -8,7 +8,7 @@ class CustomNewsContainer extends React.Component {
         return(
             <div className="source-container">
                 <h1> Custom Keywords Followed: </h1>
-                {this.props.customNews.map(publisher => publisher.map( article => <ArticleCard article={article}/> ))}
+                {this.props.customQueryHeadlines.map(publisher => publisher.map( article => <ArticleCard article={article}/> ))}
             </div>
         )
     }

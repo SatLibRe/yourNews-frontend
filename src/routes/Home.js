@@ -11,7 +11,8 @@ class Home extends React.Component {
         sourceHeadlines: [],
         countries: [],
         countryHeadlines: [],
-        customNews: []
+        custom_queries: [],
+        customQueryHeadlines: [],
     }
 
     componentDidMount(){
@@ -20,7 +21,8 @@ class Home extends React.Component {
         .then(response => {
             this.setState({
                 sources: response.sources, 
-                countries: response.countries
+                countries: response.countries,
+                custom_queries: response.custom_queries
             })
         }).then( () => this.state.sources.forEach(source => 
             {
@@ -40,31 +42,27 @@ class Home extends React.Component {
                         countryHeadlines: [...this.state.countryHeadlines,response.articles.slice(0,5)]
                     })
                 })
-        })).then( () => {
-            fetch(`https://newsapi.org/v2/everything?q=${this.props.custom1}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
-            .then(response => response.json())
-            .then( response => {
-                this.setState({
-                    customNews: [...this.state.customNews,response.articles.slice(0,5)]
+        })).then( () => this.state.custom_queries.forEach(query => 
+            {
+                fetch(`https://newsapi.org/v2/everything?q=${query.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+                .then(response => response.json())
+                .then( response => {
+                    this.setState({
+                        customQueryHeadlines: [...this.state.customQueryHeadlines, response.articles.slice(0,5)]
+                    })
                 })
-            })
-        }).then( () => {
-            fetch(`https://newsapi.org/v2/everything?q=${this.props.custom2}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
-            .then(response => response.json())
-            .then( response => {
-                this.setState({
-                    customNews: [...this.state.customNews,response.articles.slice(0,5)]
-                })
-            })
-        })
+        }))
     }
 
+    
+
     render(){
+        console.log(this.state.customQueryHeadlines)
         return(
         <React.Fragment>
           <SourceContainer sourceHeadlines={this.state.sourceHeadlines}/>
           <CountryContainer countryHeadLines={this.state.countryHeadlines}/>
-          <CustomNewsContainer customNews={this.state.customNews}/>
+          <CustomNewsContainer customQueryHeadlines={this.state.customQueryHeadlines}/>
         </React.Fragment>
         )
     }
