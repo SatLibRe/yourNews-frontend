@@ -8,6 +8,7 @@ class Home extends React.Component {
 
     state = {
         sources: [],
+        sourceJoiners: [],
         sourceHeadlines: [],
         countries: [],
         countryHeadlines: [],
@@ -25,6 +26,7 @@ class Home extends React.Component {
         .then(response => {
             this.setState({
                 sources: response.sources, 
+                sourceJoiners: response.user_sources,
                 countries: response.countries,
                 custom_queries: response.custom_queries
             })
@@ -61,11 +63,11 @@ class Home extends React.Component {
     
 
     render(){
-        console.log(this.state.customQueryHeadlines)
+        console.log(this.state.sourceJoiners)
         return(
         <React.Fragment>
-            <button onClick={this.handleEditClick}> Edit </button>
-          <SourceContainer sourceHeadlines={this.state.sourceHeadlines}/>
+            <button onClick={this.handleEditClick}> Add More Interests </button>
+          <SourceContainer sourceJoiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
           <CountryContainer countryHeadLines={this.state.countryHeadlines}/>
           <CustomNewsContainer customQueryHeadlines={this.state.customQueryHeadlines}/>
         </React.Fragment>
