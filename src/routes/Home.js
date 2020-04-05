@@ -12,12 +12,33 @@ class Home extends React.Component {
         sourceHeadlines: [],
         countries: [],
         countryHeadlines: [],
+        countryJoiners: [],
         custom_queries: [],
         customQueryHeadlines: [],
+        customQueryJoiners: []
     }
 
     handleEditClick = () => {
         this.props.history.push("/selectinterests")
+    }
+
+
+    handleSourceRemove = (e) => {
+        fetch(`http://localhost:3000/usersources/${e.target.id}`, {
+            method: 'DELETE'
+        })
+    }
+
+    handleCountryRemove = (e) => {
+        fetch(`http://localhost:3000/countryusers/${e.target.id}`, {
+            method: 'DELETE'
+        })
+    }
+
+    handleCustomNewsRemove = (e) => {
+        fetch(`http://localhost:3000/customqueryusers/${e.target.id}`, {
+            method: 'DELETE'
+        })
     }
 
     componentDidMount(){
@@ -28,7 +49,9 @@ class Home extends React.Component {
                 sources: response.sources, 
                 sourceJoiners: response.user_sources,
                 countries: response.countries,
-                custom_queries: response.custom_queries
+                countryJoiners: response.country_users,
+                custom_queries: response.custom_queries,
+                customQueryJoiners: response.custom_query_users 
             })
         }).then( () => this.state.sources.forEach(source => 
             {
@@ -67,9 +90,9 @@ class Home extends React.Component {
         return(
         <React.Fragment>
             <button onClick={this.handleEditClick}> Add More Interests </button>
-          <SourceContainer joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
-          <CountryContainer countryHeadLines={this.state.countryHeadlines}/>
-          <CustomNewsContainer customQueryHeadlines={this.state.customQueryHeadlines}/>
+          <SourceContainer handleRemove={this.handleSourceRemove} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
+          <CountryContainer  handleRemove={this.handleCountryRemove} joiners={this.state.countryJoiners} countryHeadLines={this.state.countryHeadlines}/>
+          <CustomNewsContainer handleRemove={this.handleCustomNewsRemove} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
         </React.Fragment>
         )
     }
