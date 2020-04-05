@@ -67,7 +67,7 @@ class Home extends React.Component {
         return(
         <React.Fragment>
             <button onClick={this.handleEditClick}> Add More Interests </button>
-          <SourceContainer sourceJoiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
+          <SourceContainer joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
           <CountryContainer countryHeadLines={this.state.countryHeadlines}/>
           <CustomNewsContainer customQueryHeadlines={this.state.customQueryHeadlines}/>
         </React.Fragment>
