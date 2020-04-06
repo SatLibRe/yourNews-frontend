@@ -13,16 +13,17 @@ class CustomNewsContainer extends React.Component {
         return(
             <div className="custom-news-container">
                 <h1> Keywords Followed: </h1>
-                <div className="indiv-div">
-                {this.props.joiners.map(joiner => {
-                    return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCustom(joiner)} </button>})}
+                <div className="remove-buttons-div">
+                    {this.props.joiners.map(joiner => {
+                        return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCustom(joiner)} </button>})}
+                </div>
                        {this.props.customQueryHeadlines.map(publisher => { 
                             return <div id="" className="dev-border">        
                                     {publisher.map( article => <ArticleCard article={article}/>)}
                                   </div>
                             })
                         }
-                </div>
+                
             </div>
         )
     }

@@ -65,7 +65,7 @@ class SelectInterests extends React.Component {
                     <div className="inner-choose-div">
                         {this.state.countries.map(country => 
                         <label key={country.id}>
-                            {country}
+                            {country.toUpperCase()}
                         <input
                             name={country}
                             type="checkbox"

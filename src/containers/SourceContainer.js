@@ -15,12 +15,12 @@ class SourceContainer extends React.Component {
                 <div className="remove-buttons-div">
                     <div className="remove-buttons-inner-div">
                         {this.props.joiners.map(joiner => {
-                            return <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following {this.identifySource(joiner)} </button>})}
+                            return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifySource(joiner)} </button>})}
                     </div>
                 </div>
                        {this.props.sourceHeadlines.map(publisher => { 
                             return <div id="" className="dev-border">
-                                    {this.props.headlineMaker(publisher)}            
+                                              
                                     {publisher.map( article => <ArticleCard article={article} /> )}
                                   </div>
                             })
