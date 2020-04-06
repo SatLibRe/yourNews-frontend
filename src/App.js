@@ -98,13 +98,9 @@ class App extends React.Component {
             source_id: response.id
           })
         })
-      }).then(() => {
-        this.props.history.push("/home")
-        this.setState({
-          reload: true
-        })
       })
     })
+    alert("Selections Added")
   }
 
   handleSourcesInputChange = (e) => {
@@ -132,7 +128,7 @@ class App extends React.Component {
       <Router >
         {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route path='/selectinterests' render={(props) => <SelectInterests {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange} history={this.history} checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
+        <Route path='/selectinterests' render={(props) => <SelectInterests {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
         <Route path='/home' render={(props) => <Home custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
       </Router>
     );

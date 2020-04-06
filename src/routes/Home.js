@@ -3,6 +3,7 @@ import SourceContainer from "../containers/SourceContainer"
 import CountryContainer from "../containers/CountryContainer"
 import CustomNewsContainer from "../containers/CustomNewsContainer"
 import ArticleCard from "../components/ArticleCard"
+import Nav from "../components/Nav.js"
 
 class Home extends React.Component {
 
@@ -16,10 +17,6 @@ class Home extends React.Component {
         custom_queries: [],
         customQueryHeadlines: [],
         customQueryJoiners: []
-    }
-
-    handleEditClick = () => {
-        this.props.history.push("/selectinterests")
     }
 
 
@@ -86,10 +83,11 @@ class Home extends React.Component {
     
 
     render(){
-        console.log(this.state.sourceJoiners)
+        console.log(this.props)
         return(
         <React.Fragment>
-            <button onClick={this.handleEditClick}> Add More Interests </button>
+            <Nav history={this.props.history}/>
+            <button onClick={this.props.handleEditClick}> Add More Interests </button>
           <SourceContainer handleRemove={this.handleSourceRemove} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
           <CountryContainer  handleRemove={this.handleCountryRemove} joiners={this.state.countryJoiners} countryHeadLines={this.state.countryHeadlines}/>
           <CustomNewsContainer handleRemove={this.handleCustomNewsRemove} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>

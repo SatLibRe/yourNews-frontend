@@ -2,6 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
+import Nav from "../components/Nav.js"
 
 
 class SelectInterests extends React.Component {
@@ -37,7 +38,10 @@ class SelectInterests extends React.Component {
     }
 
     render(){
+        console.log(this.props)
         return(
+        <React.Fragment>
+            <Nav history={this.props.history}/>
             <form onSubmit={this.props.handleSelectInterests}>
                 {this.state.sources.map(source => 
                     <label key={source.id}>
@@ -65,6 +69,7 @@ class SelectInterests extends React.Component {
                 </label>
                 <input type="submit" value="Submit" />
             </form>
+        </React.Fragment>
         )
     }
 }
