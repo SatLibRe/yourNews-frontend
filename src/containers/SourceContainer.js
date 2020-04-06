@@ -16,7 +16,7 @@ class SourceContainer extends React.Component {
                 {this.props.joiners.map(joiner => {
                     return <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following {this.identifySource(joiner)} </button>})}
                        {this.props.sourceHeadlines.map(publisher => { 
-                            return <div className="dev-border">
+                            return <div id="" className="dev-border">
                                     {this.props.headlineMaker(publisher)}            
                                     {publisher.map( article => <ArticleCard article={article} /> )}
                                   </div>
@@ -29,13 +29,3 @@ class SourceContainer extends React.Component {
 }
 
 export default SourceContainer
-
-// {this.props.joiners.map(joiner => { 
-//     return this.props.sourceHeadlines.map(publisher => { 
-//         return <div className="dev-border">
-//                 {this.headlineMaker(publisher)}
-//                 <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following </button>
-//                 {publisher.map( article => <ArticleCard article={article} handleRemove={this.props.handleRemove}/> )}
-//               </div>
-//         })
-//     })}

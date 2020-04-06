@@ -21,18 +21,21 @@ class Home extends React.Component {
 
 
     handleSourceRemove = (e) => {
+        e.target.remove()
         fetch(`http://localhost:3000/usersources/${e.target.id}`, {
             method: 'DELETE'
         })
     }
 
     handleCountryRemove = (e) => {
+        e.target.remove()
         fetch(`http://localhost:3000/countryusers/${e.target.id}`, {
             method: 'DELETE'
         })
     }
 
     handleCustomNewsRemove = (e) => {
+        e.target.remove()
         fetch(`http://localhost:3000/customqueryusers/${e.target.id}`, {
             method: 'DELETE'
         })
@@ -94,8 +97,8 @@ class Home extends React.Component {
         <React.Fragment>
             <Nav history={this.props.history}/>
           <SourceContainer sources={this.state.sources} handleRemove={this.handleSourceRemove} headlineMaker={this.headlineMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
-          <CountryContainer  handleRemove={this.handleCountryRemove} headlineMaker={this.headlineMaker} joiners={this.state.countryJoiners} countryHeadLines={this.state.countryHeadlines}/>
-          <CustomNewsContainer handleRemove={this.handleCustomNewsRemove} headlineMaker={this.headlineMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
+          <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} headlineMaker={this.headlineMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
+          <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} headlineMaker={this.headlineMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
         </React.Fragment>
         )
     }

@@ -1,19 +1,23 @@
 import React from 'react';
 import ArticleCard from '../components/ArticleCard';
 
-class SourceContainer extends React.Component {
+class CountryContainer extends React.Component {
 
+    identifyCountry = (joiner) => {
+        let foundCountry = this.props.countries.find(country => country.id == joiner.country_id )
+        return foundCountry.name
+    }
 
     render(){
         return(
-            <div className="source-container">
+            <div className="country-container">
             <h1> Countries Followed: </h1>
             <div className="indiv-div">
-                   {this.props.countryHeadLines.map(publisher => { 
-                        return <div className="dev-border">
-                                {/* {this.props.headlineMaker(publisher)} */}
-                                {/* {this.props.joiners.map(joiner => <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following </button>)} */}
-                                {publisher.map( article => <ArticleCard article={article} handleRemove={this.props.handleRemove}/> )}
+            {this.props.joiners.map(joiner => {
+                    return <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following {this.identifyCountry(joiner)} </button>})}
+                       {this.props.countryHeadlines.map(publisher => { 
+                        return <div className="dev-border" id="">
+                                {publisher.map( article => <ArticleCard article={article}/> )}
                               </div>
                         })
                     }
@@ -23,4 +27,4 @@ class SourceContainer extends React.Component {
     }
 }
 
-export default SourceContainer
+export default CountryContainer
