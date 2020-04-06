@@ -3,10 +3,9 @@ import ArticleCard from '../components/ArticleCard';
 
 class SourceContainer extends React.Component {
 
-    headlineMaker = (publisher) => {
-        for(let i = 0; i < 1; i++){
-           return <h1> {publisher[i].source.name} </h1>
-        }
+    identifySource = (joiner) => {
+        let foundSource = this.props.sources.find(source => source.id == joiner.source_id )
+        return foundSource.name
     }
 
     render(){
@@ -14,15 +13,15 @@ class SourceContainer extends React.Component {
             <div className="source-container">
                 <h1> Sources Followed: </h1>
                 <div className="indiv-div">
-                    {this.props.joiners.map(joiner => { 
-                        return this.props.sourceHeadlines.map(publisher => { 
+                {this.props.joiners.map(joiner => {
+                    return <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following {this.identifySource(joiner)} </button>})}
+                       {this.props.sourceHeadlines.map(publisher => { 
                             return <div className="dev-border">
-                                    {this.headlineMaker(publisher)}
-                                    <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following </button>
-                                    {publisher.map( article => <ArticleCard article={article} joiner={joiner} handleRemove={this.props.handleRemove}/> )}
+                                    {this.props.headlineMaker(publisher)}            
+                                    {publisher.map( article => <ArticleCard article={article} /> )}
                                   </div>
                             })
-                        })}
+                        }
                 </div>
             </div>
         )
@@ -30,3 +29,13 @@ class SourceContainer extends React.Component {
 }
 
 export default SourceContainer
+
+// {this.props.joiners.map(joiner => { 
+//     return this.props.sourceHeadlines.map(publisher => { 
+//         return <div className="dev-border">
+//                 {this.headlineMaker(publisher)}
+//                 <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following </button>
+//                 {publisher.map( article => <ArticleCard article={article} handleRemove={this.props.handleRemove}/> )}
+//               </div>
+//         })
+//     })}
