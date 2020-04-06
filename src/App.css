@@ -51,9 +51,19 @@
   z-index: 100;
 }
 
-#source-container {
+.source-container {
   border: solid;
-  width: 25%;
+  margin: 10%
+}
+
+.country-container {
+  border: solid;
+  margin: 10%
+}
+
+.custom-news-container {
+  border: solid;
+  margin: 10%
 }
 
 #select-interests {
@@ -65,7 +75,8 @@
 }
 
 .dev-border {
-  border: solid
+  border: solid;
+  width: fit-content
 }
 
 .login-header {
@@ -102,3 +113,23 @@
   margin-left: 5%;
   font-size: 48px;
 }
+
+.remove-buttons-div{
+  border: solid;
+  margin: 2%;
+  width: fit-content;
+}
+
+.remove-buttons-inner-div{
+  margin-top: 2%;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+.master-container{
+  border: solid;
+  display: grid;
+  grid-template-columns: 33% 33% 33%
+}
+
+

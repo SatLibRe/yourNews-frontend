@@ -96,9 +96,11 @@ class Home extends React.Component {
         return(
         <React.Fragment>
             <Nav history={this.props.history}/>
-          <SourceContainer sources={this.state.sources} handleRemove={this.handleSourceRemove} headlineMaker={this.headlineMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
-          <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} headlineMaker={this.headlineMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
-          <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} headlineMaker={this.headlineMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
+            <div className="master-container">
+                <SourceContainer style={{border: "solid"}} sources={this.state.sources} handleRemove={this.handleSourceRemove} headlineMaker={this.headlineMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
+                <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} headlineMaker={this.headlineMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
+                <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} headlineMaker={this.headlineMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
+            </div>
         </React.Fragment>
         )
     }
