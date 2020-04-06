@@ -39,7 +39,7 @@ export default function HideAppBar(props) {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar>
+        <AppBar color="secondary">
           <Toolbar>
             { props.history.location.pathname === "/home" ? <Button id="select-interests" color="inherit" onClick={() => props.history.push("/selectinterests")}> Add More Interests</Button> : <Button id="home-button" color="inherit" onClick={() => props.history.push("/home")}> Home </Button>}
             <Button color="inherit" onClick={() => props.history.push("/login")}> Logout</Button>

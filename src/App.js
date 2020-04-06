@@ -52,6 +52,30 @@ class App extends React.Component {
         })
       })
     }
+
+    if(this.state.custom2.length >= 2){
+      fetch("http://localhost:3000/customqueries", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({
+          name: this.state.custom2,
+        })
+      }).then( response => response.json())
+      .then(response => {
+        fetch("http://localhost:3000/customqueryusers", {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+          },
+          body: JSON.stringify({
+            user_id: localStorage.user_id,
+            custom_query_id: response.id
+          })
+        })
+      })
+    }
   
     this.state.countries.forEach(country => {
       fetch("http://localhost:3000/countries", {

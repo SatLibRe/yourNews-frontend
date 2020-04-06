@@ -67,3 +67,38 @@
 .dev-border {
   border: solid
 }
+
+.login-header {
+  font-size: 50px;
+  margin-bottom: 0%;
+}
+
+.login-subheader {
+  margin-top: 0%;
+}
+
+.source-choose-div {
+  border: solid;
+  margin: 5%;
+  border-radius: 8px;
+}
+.signin-button {
+  background: #f50057;
+}
+
+#submit-button {
+  background: #f50057;
+  color: white;
+  margin-left: 42%;;
+}
+
+.inner-choose-div {
+  margin: 2%;
+  text-align: center;
+}
+
+
+.choose-headers {
+  margin-left: 5%;
+  font-size: 48px;
+}

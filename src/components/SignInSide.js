@@ -70,6 +70,8 @@ export default function SignInSide(props) {
       <Grid item xs={false} sm={4} md={7} className={classes.image} />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
+          <h1 className="login-header">Your News</h1>
+          <h6 className="login-subheader">curate your world</h6>
           <Avatar className={classes.avatar}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>
@@ -108,7 +110,7 @@ export default function SignInSide(props) {
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              color="secondary"
               className={classes.submit}
             >
               Sign In

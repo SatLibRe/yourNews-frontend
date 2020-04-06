@@ -18,7 +18,7 @@ class CustomNewsContainer extends React.Component {
                     return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCustom(joiner)} </button>})}
                        {this.props.customQueryHeadlines.map(publisher => { 
                             return <div id="" className="dev-border">        
-                                    {publisher.map( article => <ArticleCard article={article} /> )}
+                                    {publisher.map( article => <ArticleCard article={article}/>)}
                                   </div>
                             })
                         }

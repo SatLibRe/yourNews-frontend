@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Nav from "../components/Nav.js"
+import Button from '@material-ui/core/Button';
 
 
 class SelectInterests extends React.Component {
@@ -43,31 +44,50 @@ class SelectInterests extends React.Component {
         <React.Fragment>
             <Nav history={this.props.history}/>
             <form onSubmit={this.props.handleSelectInterests}>
-                {this.state.sources.map(source => 
-                    <label key={source.id}>
-                        {source.name}
-                    <input
-                        name={source.id}
-                        type="checkbox"
-                        onChange={this.props.handleSourcesInputChange} 
-                    />
-                    </label> )}
-                {this.state.countries.map(country => 
-                <label key={country.id}>
-                    {country}
-                <input
-                    name={country}
-                    type="checkbox"
-                    onChange={this.props.handleCountriesInputChange} 
-                />
-                </label> )}
-                <br></br>
-                <label>
-                    Custom News
-                    <input type="text" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
-                    <input type="text" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
-                </label>
-                <input type="submit" value="Submit" />
+
+                <h1 className="choose-headers"> Sources </h1>
+                <div className="source-choose-div">
+                    <div className="inner-choose-div">
+                        {this.state.sources.map(source => 
+                            <label key={source.id}>
+                                {source.name}
+                            <input
+                                name={source.id}
+                                type="checkbox"
+                                onChange={this.props.handleSourcesInputChange} 
+                            />
+                            </label> )}
+                    </div>
+                </div>
+                
+                <h1 className="choose-headers"> Countries </h1>
+                <div className="source-choose-div">
+                    <div className="inner-choose-div">
+                        {this.state.countries.map(country => 
+                        <label key={country.id}>
+                            {country}
+                        <input
+                            name={country}
+                            type="checkbox"
+                            onChange={this.props.handleCountriesInputChange} 
+                        />
+                        </label> )}
+                    </div>
+                </div>
+                
+                <h1 className="choose-headers"> Custom News </h1>
+                <div className="source-choose-div">
+                    <div className="inner-choose-div">
+                        <label>
+                            Keyword 1: <input type="text" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
+                            <br></br>
+                            Keyword 2: <input type="text" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
+                        </label>
+                    </div>
+                </div>
+                   <Button id="submit-button" type="submit" value="Submit"> Add Selections to Interests  </Button> 
+    
+
             </form>
         </React.Fragment>
         )
