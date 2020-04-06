@@ -10,7 +10,7 @@ class ArticleCard extends React.Component {
                 <h3> <a href={url}> {title} </a> </h3>
                 <h6> {this.props.article.source.name} </h6>
                 <h4> {description}</h4>
-                <button id={this.props.joiner.id} onClick={this.props.handleRemove}> Stop Following {this.props.article.source.name} </button>
+                {/* <button id={this.props.joiner.id} onClick={this.props.handleRemove}> Stop Following {this.props.article.source.name} </button> */}
             </div>
         )
     }

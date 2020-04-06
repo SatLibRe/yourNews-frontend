@@ -9,7 +9,6 @@ class SourceContainer extends React.Component {
         }
     }
 
-
     render(){
         return(
             <div className="source-container">
@@ -19,6 +18,7 @@ class SourceContainer extends React.Component {
                         return this.props.sourceHeadlines.map(publisher => { 
                             return <div className="dev-border">
                                     {this.headlineMaker(publisher)}
+                                    <button id={joiner.id} onClick={this.props.handleRemove}> Stop Following </button>
                                     {publisher.map( article => <ArticleCard article={article} joiner={joiner} handleRemove={this.props.handleRemove}/> )}
                                   </div>
                             })
