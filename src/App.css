@@ -39,7 +39,7 @@
 
 .article-images {
   width: 100px;
-  width: 50vh;
+  width: 100px;
   display: block;
 }
 
@@ -62,4 +62,8 @@
 
 #home-button {
   margin-left: 90%;
+}
+
+.dev-border {
+  border: solid
 }
