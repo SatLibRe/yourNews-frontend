@@ -87,7 +87,6 @@ class Home extends React.Component {
         return(
         <React.Fragment>
             <Nav history={this.props.history}/>
-            <button onClick={this.props.handleEditClick}> Add More Interests </button>
           <SourceContainer handleRemove={this.handleSourceRemove} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
           <CountryContainer  handleRemove={this.handleCountryRemove} joiners={this.state.countryJoiners} countryHeadLines={this.state.countryHeadlines}/>
           <CustomNewsContainer handleRemove={this.handleCustomNewsRemove} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
