@@ -17,7 +17,7 @@ class CountryContainer extends React.Component {
                         return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCountry(joiner).toUpperCase()} </button>})}
             </div>
                        {this.props.countryHeadlines.map(publisher => { 
-                        return <div className="dev-border" id="">
+                        return <div className="card-container" id="">
                                 {publisher.map( article => <ArticleCard article={article}/> )}
                               </div>
                         })

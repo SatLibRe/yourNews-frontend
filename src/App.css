@@ -138,3 +138,8 @@
 }
 
 
+.card-container{
+  border: solid;
+  margin: 8%;
+  margin-bottom: 20%;
+}

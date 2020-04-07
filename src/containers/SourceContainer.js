@@ -19,8 +19,7 @@ class SourceContainer extends React.Component {
                     </div>
                 </div>
                        {this.props.sourceHeadlines.map(publisher => { 
-                            return <div id="" className="dev-border">
-                                              
+                            return <div id="" className="card-container">
                                     {publisher.map( article => <ArticleCard article={article} /> )}
                                   </div>
                             })
