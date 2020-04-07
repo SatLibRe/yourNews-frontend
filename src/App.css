@@ -75,7 +75,6 @@
   margin-left: 8%;
 }
 
-
 .source-container {
   margin: 10%;
   border-radius: 6px;
@@ -83,12 +82,33 @@
   background-color: #f1f2f6;
 }
 
+
 .master-container{
   display: grid;
-  grid-template-columns: 33% 33% 33%
+  grid-template-columns: 50% 50%
 }
 
 /* Select Interests */
+
+#submit-button {
+  background: #f50057;
+  color: white;
+  margin-left: 42%;;
+  margin-top: 2%;
+}
+
+.selection-container {
+  margin: 10%;
+  height: fit-content;
+  width: fit-content;
+}
+
+.sources-selection-container {
+  margin: 10%;
+  margin-left: 60%;
+  height: fit-content;
+  width: fit-content;
+}
 
 #select-interests {
   margin-left: 85%;
@@ -101,12 +121,17 @@
 }
 
 .inner-choose-div {
-  margin: 2%;
+  margin-left: 8%;
+  background-color: #f1f2f6;
+  border-radius: 6px;
+}
+.inner-inner-choose-div {
+  margin: 8%;
 }
 
 
 .choose-headers {
-  margin-left: 5%;
+  margin-left: 8%;
   font-size: 48px;
 }
 
@@ -143,11 +168,7 @@
   background: #f50057;
 }
 
-#submit-button {
-  background: #f50057;
-  color: white;
-  margin-left: 42%;;
-}
+
 
 
 
