@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleCard from '../components/ArticleCard';
+import Button from '@material-ui/core/Button';
 
 class CountryContainer extends React.Component {
 
@@ -10,11 +11,11 @@ class CountryContainer extends React.Component {
 
     render(){
         return(
-            <div className="country-container">
-            <h1> Countries Followed: </h1>
+            <div className="source-container">
+            <h1 className="container-headers"> Countries Followed: </h1>
             <div className="remove-buttons-div">
                 {this.props.joiners.map(joiner => {
-                        return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCountry(joiner).toUpperCase()} </button>})}
+                        return <Button  style={{background: "#f50057", color: "white", marginRight: "2%"}} id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCountry(joiner).toUpperCase()} </Button>})}
             </div>
                        {this.props.countryHeadlines.map(publisher => { 
                         return <div className="card-container" id="">

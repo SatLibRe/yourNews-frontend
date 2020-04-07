@@ -37,6 +37,8 @@
   }
 }
 
+/* Article */
+
 .article-images {
   width: 100px;
   width: 100px;
@@ -51,33 +53,82 @@
   z-index: 100;
 }
 
+/* Home */
+
+.remove-buttons-div{
+  /* border: solid; */
+  margin: 2%;
+  margin-left: 8%;
+  /* width: fit-content; */
+}
+
+.card-container{
+  margin: 8%;
+  margin-bottom: 20%;
+}
+
+.article-card {
+  margin-bottom: 20%;
+}
+
+.container-headers {
+  margin-left: 8%;
+}
+
+
 .source-container {
-  border: solid;
-  margin: 10%
+  margin: 10%;
+  border-radius: 6px;
+  height: fit-content;
+  background-color: #f1f2f6;
 }
 
-.country-container {
-  border: solid;
-  margin: 10%
+.master-container{
+  display: grid;
+  grid-template-columns: 33% 33% 33%
 }
 
-.custom-news-container {
-  border: solid;
-  margin: 10%
-}
+/* Select Interests */
 
 #select-interests {
   margin-left: 85%;
+}
+
+.source-choose-div {
+  border: solid;
+  margin: 5%;
+  border-radius: 8px;
+}
+
+.inner-choose-div {
+  margin: 2%;
+}
+
+
+.choose-headers {
+  margin-left: 5%;
+  font-size: 48px;
+}
+
+/* Nav */
+
+#nav-logo {
+  font-family: cursive;
+  color: beige;
 }
 
 #home-button {
   margin-left: 90%;
 }
 
+/* Dev */
+
 .dev-border {
   border: solid;
   width: fit-content
 }
+
+/* Login */
 
 .login-header {
   font-size: 50px;
@@ -88,11 +139,6 @@
   margin-top: 0%;
 }
 
-.source-choose-div {
-  border: solid;
-  margin: 5%;
-  border-radius: 8px;
-}
 .signin-button {
   background: #f50057;
 }
@@ -103,46 +149,10 @@
   margin-left: 42%;;
 }
 
-.inner-choose-div {
-  margin: 2%;
-  text-align: center;
-}
 
 
-.choose-headers {
-  margin-left: 5%;
-  font-size: 48px;
-}
-
-.remove-buttons-div{
-  border: solid;
-  margin: 2%;
-  width: fit-content;
-}
-
-.remove-buttons-inner-div{
-  margin-top: 2%;
-  margin-bottom: 2%;
-  text-align: center;
-}
-
-.master-container{
-  display: grid;
-  grid-template-columns: 33% 33% 33%
-}
-
-#nav-logo {
-  font-family: cursive;
-  color: beige;
-}
 
 
-.card-container{
-  border: solid;
-  margin: 8%;
-  margin-bottom: 20%;
-}
 
-.article-card {
-  margin-bottom: 20%;
-}
+
+

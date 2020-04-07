@@ -1,5 +1,6 @@
 import React from 'react';
 import ArticleCard from '../components/ArticleCard';
+import Button from '@material-ui/core/Button';
 
 class CustomNewsContainer extends React.Component {
 
@@ -11,11 +12,11 @@ class CustomNewsContainer extends React.Component {
 
     render(){
         return(
-            <div className="custom-news-container">
-                <h1> Keywords Followed: </h1>
+            <div className="source-container">
+                <h1 className="container-headers"> Keywords Followed: </h1>
                 <div className="remove-buttons-div">
                     {this.props.joiners.map(joiner => {
-                        return <button id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCustom(joiner)} </button>})}
+                        return <Button style={{background: "#f50057", color: "white", marginRight: "2%"}} id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCustom(joiner)} </Button>})}
                 </div>
                        {this.props.customQueryHeadlines.map(publisher => { 
                             return <div id="" className="card-container">        

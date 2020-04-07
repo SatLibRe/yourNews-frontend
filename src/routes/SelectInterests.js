@@ -50,6 +50,7 @@ class SelectInterests extends React.Component {
                     <div className="inner-choose-div">
                         {this.state.sources.map(source => 
                             <label key={source.id}>
+                                <br/>
                                 {source.name}
                             <input
                                 name={source.id}
@@ -65,6 +66,7 @@ class SelectInterests extends React.Component {
                     <div className="inner-choose-div">
                         {this.state.countries.map(country => 
                         <label key={country.id}>
+                            <br/>
                             {country.toUpperCase()}
                         <input
                             name={country}
