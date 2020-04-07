@@ -6,6 +6,7 @@ import Home from "./routes/Home.js"
 import SelectInterests from "./routes/SelectInterests.js"
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Redirect, useHistory } from "react-router-dom"
+import Alert from '@material-ui/lab/Alert';
 
 
 class App extends React.Component {
@@ -17,6 +18,7 @@ class App extends React.Component {
     reload: false,
     custom1: "",
     custom2: "",
+    alertTriggered: false
   }
 
   setUser = (response) => {
@@ -26,8 +28,18 @@ class App extends React.Component {
     localStorage.user_id = this.state.currentUser.id
   }
 
+  setAlertFalse = () => {
+    this.setState({
+      alertTriggered: false
+    })
+  }
+
   handleSelectInterests = (e) => {
     e.preventDefault()
+
+    this.setState({
+      alertTriggered: true
+    })
     
     if(this.state.custom1.length >= 2){
       fetch("http://localhost:3000/customqueries", {
@@ -124,7 +136,6 @@ class App extends React.Component {
         })
       })
     })
-    alert("Selections Added")
   }
 
   handleSourcesInputChange = (e) => {
@@ -152,7 +163,7 @@ class App extends React.Component {
       <Router >
         {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route path='/selectinterests' render={(props) => <SelectInterests {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
+        <Route path='/selectinterests' render={(props) => <SelectInterests setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
         <Route path='/home' render={(props) => <Home custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
       </Router>
     );

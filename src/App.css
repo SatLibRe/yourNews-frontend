@@ -62,6 +62,16 @@
   /* width: fit-content; */
 }
 
+.remove-buttons {
+  background: #f50057;
+  color: white;
+  margin-right: 2%;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: sans-serif;
+  height: 35px;
+}
+
 .card-container{
   margin: 8%;
   margin-bottom: 20%;
@@ -83,9 +93,14 @@
 }
 
 
-.master-container{
+.master-select-container{
   display: grid;
   grid-template-columns: 50% 50%
+}
+
+.master-home-container{
+  display: grid;
+  grid-template-columns: 33% 33% 33% 
 }
 
 /* Select Interests */

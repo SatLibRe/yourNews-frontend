@@ -16,7 +16,7 @@ class SourceContainer extends React.Component {
                 <div className="remove-buttons-div">
                     {/* <div className="remove-buttons-inner-div"> */}
                         {this.props.joiners.map(joiner => {
-                            return <Button style={{background: "#f50057", color: "white", marginRight: "2%"}} id={joiner.id} onClick={this.props.handleRemove}> X {this.identifySource(joiner)} </Button>})}
+                            return <button className="remove-buttons"  id={joiner.id} onClick={this.props.handleRemove}> X {this.identifySource(joiner).toUpperCase()} </button>})}
                     {/* </div> */}
                 </div>
                        {this.props.sourceHeadlines.map(publisher => { 

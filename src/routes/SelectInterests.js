@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Nav from "../components/Nav.js"
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/lab/Alert';
 
 
 class SelectInterests extends React.Component {
@@ -42,10 +43,11 @@ class SelectInterests extends React.Component {
         console.log(this.props)
         return(
             <React.Fragment>
-            <Nav history={this.props.history}/>
+            <Nav history={this.props.history} setAlertFalse={this.props.setAlertFalse}/>
                 <form onSubmit={this.props.handleSelectInterests}>
                     <Button id="submit-button" type="submit" value="Submit"> Add Selections to Interests  </Button> 
-                    <div className="master-container">
+                    {this.props.alertTriggered === true ?   <Alert variant="filled" severity="success">Selections added! Click HOME to check them out!</Alert> : null}
+                    <div className="master-select-container">
                         <div className="sources-selection-container">
                         <h1 className="choose-headers"> Sources </h1>
                             <div className="inner-choose-div">
