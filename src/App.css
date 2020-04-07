@@ -83,6 +83,7 @@
 
 .container-headers {
   margin-left: 8%;
+  margin-top: 0%;
 }
 
 .source-container {
@@ -105,11 +106,26 @@
 
 /* Select Interests */
 
+#modal-button {
+  background: #f50057;
+  color: white;
+  margin-left: 35%;
+  margin-top: 5%;
+  border-radius: 8px;
+  font-size: 25px;
+  font-family: sans-serif;
+  height: 35px;
+}
+
 #submit-button {
   background: #f50057;
   color: white;
-  margin-left: 42%;;
   margin-top: 2%;
+  margin-left: 43%;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: sans-serif;
+  height: 35px;
 }
 
 .selection-container {

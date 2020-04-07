@@ -83,9 +83,14 @@ class Home extends React.Component {
         }))
     }
 
-    headlineMaker = (publisher) => {
-        for(let i = 0; i < 1; i++){
-           return <h1> {publisher[i].source.name} </h1>
+    joinerIdAssocMaker = (joiners) => {
+        if(joiners.length > 0){
+            for(let i = 0; i < 1; i++){
+                let joiner = joiners[0]
+                joiners.splice(joiners[i],1)
+                debugger;
+               return joiner.id
+            }
         }
     }
 
@@ -97,7 +102,7 @@ class Home extends React.Component {
         <React.Fragment>
             <Nav history={this.props.history}/>
             <div className="master-home-container">
-                <SourceContainer style={{border: "solid"}} sources={this.state.sources} handleRemove={this.handleSourceRemove} headlineMaker={this.headlineMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
+                <SourceContainer style={{border: "solid"}} sources={this.state.sources} handleRemove={this.handleSourceRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
                 <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} headlineMaker={this.headlineMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
                 <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} headlineMaker={this.headlineMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
             </div>

@@ -15,7 +15,7 @@ class CountryContainer extends React.Component {
             <h1 className="container-headers"> Countries Followed: </h1>
             <div className="remove-buttons-div">
                 {this.props.joiners.map(joiner => {
-                        return <button  className="remove-buttons" id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCountry(joiner).toUpperCase()} </button>})}
+                        return <button  className="remove-buttons" id={joiner.id} onClick={this.props.handleRemove}> x {this.identifyCountry(joiner).toUpperCase()} </button>})}
             </div>
                        {this.props.countryHeadlines.map(publisher => { 
                         return <div className="card-container" id="">

@@ -16,7 +16,7 @@ class CustomNewsContainer extends React.Component {
                 <h1 className="container-headers"> Keywords Followed: </h1>
                 <div className="remove-buttons-div">
                     {this.props.joiners.map(joiner => {
-                        return <button className="remove-buttons" id={joiner.id} onClick={this.props.handleRemove}> X {this.identifyCustom(joiner)} </button>})}
+                        return <button className="remove-buttons" id={joiner.id} onClick={this.props.handleRemove}> x {this.identifyCustom(joiner)} </button>})}
                 </div>
                        {this.props.customQueryHeadlines.map(publisher => { 
                             return <div id="" className="card-container">        
