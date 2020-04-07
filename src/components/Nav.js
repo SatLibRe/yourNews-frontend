@@ -41,6 +41,7 @@ export default function HideAppBar(props) {
       <HideOnScroll {...props}>
         <AppBar color="secondary">
           <Toolbar>
+            <p id="nav-logo"> YN </p>
             { props.history.location.pathname === "/home" ? <Button id="select-interests" color="inherit" onClick={() => props.history.push("/selectinterests")}> Add More Interests</Button> : <Button id="home-button" color="inherit" onClick={() => props.history.push("/home")}> Home </Button>}
             <Button color="inherit" onClick={() => props.history.push("/login")}> Logout</Button>
           </Toolbar>

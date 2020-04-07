@@ -75,9 +75,6 @@ export default function SignInSide(props) {
           <Avatar className={classes.avatar}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
           <form className={classes.form} onSubmit={props.handleSubmit}>
             <TextField
               variant="outlined"
