@@ -127,7 +127,6 @@
 }
 
 .master-container{
-  border: solid;
   display: grid;
   grid-template-columns: 33% 33% 33%
 }
@@ -141,5 +140,9 @@
 .card-container{
   border: solid;
   margin: 8%;
+  margin-bottom: 20%;
+}
+
+.article-card {
   margin-bottom: 20%;
 }

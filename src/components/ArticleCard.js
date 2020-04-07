@@ -45,6 +45,7 @@ import ImageIcon from '@material-ui/icons/Image';
 const useStyles = makeStyles(theme => ({
   root: {
     maxWidth: 345,
+    marginBottom: 50
   },
   media: {
     height: 0,
@@ -74,7 +75,7 @@ export default function RecipeReviewCard(props) {
   };
   console.log(props)
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} >
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
