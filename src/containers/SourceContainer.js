@@ -25,7 +25,7 @@ class SourceContainer extends React.Component {
                         return <button className="remove-buttons"  id={joiner.id} onClick={this.props.handleRemove}> x {this.identifySource(joiner)} </button>})}
                 </div>
                        {this.props.sourceHeadlines.map(publisher => { 
-                            return <div  className="card-container">
+                            return <div id={this.props.joinerIdAssocMaker(publisher)} className="card-container">
                                     {publisher.map( article => <ArticleCard article={article} /> )}
                                   </div>
                             })

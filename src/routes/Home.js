@@ -19,8 +19,11 @@ class Home extends React.Component {
         customQueryJoiners: []
     }
 
+    
+
 
     handleSourceRemove = (e) => {
+        document.getElementById(e.target.innerText.split(" ")[1]).remove()
         e.target.remove()
         fetch(`http://localhost:3000/usersources/${e.target.id}`, {
             method: 'DELETE'
@@ -83,13 +86,12 @@ class Home extends React.Component {
         }))
     }
 
-    joinerIdAssocMaker = (joiners) => {
-        if(joiners.length > 0){
+    joinerIdAssocMaker = (publishers) => {
+        if(publishers.length > 0){
             for(let i = 0; i < 1; i++){
-                let joiner = joiners[0]
-                joiners.splice(joiners[i],1)
-                debugger;
-               return joiner.id
+                let publisher = publishers[0]
+                publishers.splice(publishers[i],1)
+               return publisher.source.id
             }
         }
     }
