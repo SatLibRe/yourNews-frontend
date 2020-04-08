@@ -161,9 +161,15 @@ class App extends React.Component {
   // }
 
   handleCountriesInputChange = (e) => {
-    this.setState({
-      countries: [...this.state.countries, e.target.name]
-    })
+    if(e.target.checked === true){
+      this.setState({
+        countries: [...this.state.countries, e.target.name]
+      })     
+    } else if(e.target.checked === false){
+      this.setState({
+        countries: this.state.countries.filter(country => country != e.target.name)
+      }) 
+    }
   }
 
   handleCustomFormChange = e => {
