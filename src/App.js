@@ -141,9 +141,15 @@ class App extends React.Component {
   }
 
   handleSourcesInputChange = (e) => {
-    this.setState({
-      sources: [...this.state.sources, e.target.name]
-    })
+    if(e.target.checked === true){
+      this.setState({
+        sources: [...this.state.sources, e.target.name]
+      })     
+    } else if(e.target.checked === false){
+      this.setState({
+        sources: this.state.sources.filter(source => source != e.target.name)
+      }) 
+    }
   }
 
   // handleAppStateSourceRemoval = (e) => {
