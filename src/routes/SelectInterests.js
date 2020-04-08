@@ -39,6 +39,7 @@ class SelectInterests extends React.Component {
             sources: response.sources
         })
       })
+      this.props.setAlertFalse()
     }
 
     render(){

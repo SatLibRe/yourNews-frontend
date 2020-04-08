@@ -28,18 +28,20 @@ class App extends React.Component {
     localStorage.user_id = this.state.currentUser.id
   }
 
-  // setAlertFalse = () => {
-  //   this.setState({
-  //     alertTriggered: false
-  //   })
-  // }
+  setAlertFalse = () => {
+    this.setState({
+      alertTriggered: false
+    })
+  }
 
   handleSelectInterests = (e) => {
     e.preventDefault()
-
-    this.setState({
-      alertTriggered: true
-    })
+    // if(this.state.sources.length > 1 || this.state.countries.length > 1 || this.state.custom1.length > 1 || this.state.custom2.length > 1){
+      this.setState({
+        alertTriggered: true
+      })
+    // }
+  
     
     if(this.state.custom1.length >= 2){
       fetch("http://localhost:3000/customqueries", {
