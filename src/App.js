@@ -38,6 +38,10 @@ class App extends React.Component {
     return this.state.sources.includes(name) 
   }
 
+  checkCountryChecked = (name) => {
+    return this.state.countries.includes(name) 
+  }
+
   handleSelectInterests = (e) => {
     e.preventDefault()
     // if(this.state.sources.length > 1 || this.state.countries.length > 1 || this.state.custom1.length > 1 || this.state.custom2.length > 1){
@@ -192,7 +196,7 @@ class App extends React.Component {
       <Router >
         {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route path='/selectinterests' render={(props) => <SelectInterests checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
+        <Route path='/selectinterests' render={(props) => <SelectInterests checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
         <Route path='/home' render={(props) => <Home handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
       </Router>
     );

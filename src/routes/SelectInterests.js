@@ -80,6 +80,7 @@ class SelectInterests extends React.Component {
                                         <br/>
                                         {country.toUpperCase()}
                                     <input
+                                        checked = {this.props.checkCountryChecked(country)}
                                         name={country}
                                         type="checkbox"
                                         onChange={this.props.handleCountriesInputChange} 
