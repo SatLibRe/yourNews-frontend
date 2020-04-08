@@ -28,11 +28,11 @@ class App extends React.Component {
     localStorage.user_id = this.state.currentUser.id
   }
 
-  setAlertFalse = () => {
-    this.setState({
-      alertTriggered: false
-    })
-  }
+  // setAlertFalse = () => {
+  //   this.setState({
+  //     alertTriggered: false
+  //   })
+  // }
 
   handleSelectInterests = (e) => {
     e.preventDefault()
@@ -139,11 +139,18 @@ class App extends React.Component {
   }
 
   handleSourcesInputChange = (e) => {
-    
     this.setState({
       sources: [...this.state.sources, e.target.name]
     })
   }
+
+  // handleAppStateSourceRemoval = (e) => {
+  //   console.log(this.state.sources)
+  //   console.log(e.target.innerText)
+  //   this.setState({
+  //     sources: this.state.sources.filter(name => name != e.target.innerText.split(" ")[1])
+  //   })
+  // }
 
   handleCountriesInputChange = (e) => {
     this.setState({
@@ -164,7 +171,7 @@ class App extends React.Component {
         {this.state.reload && <Redirect to="/home" /> }
         <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
         <Route path='/selectinterests' render={(props) => <SelectInterests setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
-        <Route path='/home' render={(props) => <Home custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
+        <Route path='/home' render={(props) => <Home handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
       </Router>
     );
   }

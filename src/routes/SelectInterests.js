@@ -6,6 +6,7 @@ import Nav from "../components/Nav.js"
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import Popup from "../components/Popup.js"
+import { APIKEY } from "../APIKEY.js"
 
 
 class SelectInterests extends React.Component {
@@ -30,7 +31,7 @@ class SelectInterests extends React.Component {
     }
       
     componentDidMount(){
-        fetch(`https://newsapi.org/v2/sources?apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+        fetch(`https://newsapi.org/v2/sources?${APIKEY}`)
         .then(response => response.json())
         .then(response => {
             console.log(response)

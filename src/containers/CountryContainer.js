@@ -13,17 +13,20 @@ class CountryContainer extends React.Component {
         return(
             <div className="source-container">
             <h1 className="container-headers"> Countries Followed: </h1>
-            <div className="remove-buttons-div">
-                {this.props.joiners.map(joiner => {
-                        return <button  className="remove-buttons" id={joiner.id} onClick={this.props.handleRemove}> x {this.identifyCountry(joiner).toUpperCase()} </button>})}
+            <div className="inner-container">
+                <br></br>
+                <div className="remove-buttons-div">
+                    {this.props.joiners.map(joiner => {
+                            return <button  className="remove-buttons" id={joiner.id} onClick={this.props.handleRemove}> x {this.identifyCountry(joiner).toUpperCase()} </button>})}
+                </div>
+                        {this.props.countryHeadlines.map(publisher => { 
+                            return <div className="card-container" >
+                                    {publisher.map( article => <ArticleCard article={article}/> )}
+                                </div>
+                            })
+                        }
+                <br></br>
             </div>
-                       {this.props.countryHeadlines.map(publisher => { 
-                        return <div className="card-container" id="">
-                                {publisher.map( article => <ArticleCard article={article}/> )}
-                              </div>
-                        })
-                    }
-            
         </div>
         )
     }

@@ -4,6 +4,7 @@ import CountryContainer from "../containers/CountryContainer"
 import CustomNewsContainer from "../containers/CustomNewsContainer"
 import ArticleCard from "../components/ArticleCard"
 import Nav from "../components/Nav.js"
+import { APIKEY } from "../APIKEY.js"
 
 class Home extends React.Component {
 
@@ -23,7 +24,9 @@ class Home extends React.Component {
 
 
     handleSourceRemove = (e) => {
-        document.getElementById(e.target.innerText.split(" ")[1]).remove()
+        this.setState({
+            sourceHeadlines: []
+        })
         e.target.remove()
         fetch(`http://localhost:3000/usersources/${e.target.id}`, {
             method: 'DELETE'
@@ -31,6 +34,11 @@ class Home extends React.Component {
     }
 
     handleCountryRemove = (e) => {
+        
+        // document.getElementById(e.target.innerText.split(" ")[1]).remove()
+        this.setState({
+            countryHeadlines: []
+        })
         e.target.remove()
         fetch(`http://localhost:3000/countryusers/${e.target.id}`, {
             method: 'DELETE'
@@ -38,6 +46,11 @@ class Home extends React.Component {
     }
 
     handleCustomNewsRemove = (e) => {
+        
+        // document.getElementById(e.target.dataset.id.split(" ")[1]).remove()
+        this.setState({
+            customQueryHeadlines: []
+        })
         e.target.remove()
         fetch(`http://localhost:3000/customqueryusers/${e.target.id}`, {
             method: 'DELETE'
@@ -65,9 +78,14 @@ class Home extends React.Component {
                         sourceHeadlines: [...this.state.sourceHeadlines,response.articles.slice(0,5)]
                     })
                 })
+
+                // let test = response.articles[0].source.id
+                // let tester = {}
+                // tester[test] = response.articles.slice(0,5)
+                // this.setState({sourceHeadlines: [...this.state.sourceHeadlines,tester]})
         })).then( () => this.state.countries.forEach(country => 
             {
-                fetch(`https://newsapi.org/v2/top-headlines?country=${country.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+                fetch(`https://newsapi.org/v2/top-headlines?country=${country.name}&${APIKEY}`)
                 .then(response => response.json())
                 .then( response => {
                     this.setState({
@@ -76,7 +94,7 @@ class Home extends React.Component {
                 })
         })).then( () => this.state.custom_queries.forEach(query => 
             {
-                fetch(`https://newsapi.org/v2/everything?q=${query.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+                fetch(`https://newsapi.org/v2/everything?q=${query.name}&${APIKEY}`)
                 .then(response => response.json())
                 .then( response => {
                     this.setState({
@@ -99,14 +117,14 @@ class Home extends React.Component {
     
 
     render(){
-        console.log(this.state.sourceHeadlines)
+        
         return(
         <React.Fragment>
             <Nav history={this.props.history}/>
             <div className="master-home-container">
-                <SourceContainer style={{border: "solid"}} sources={this.state.sources} handleRemove={this.handleSourceRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
-                <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} headlineMaker={this.headlineMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
-                <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} headlineMaker={this.headlineMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/>
+                <SourceContainer  sources={this.state.sources} handleRemove={this.handleSourceRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
+                <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
+                <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/> 
             </div>
         </React.Fragment>
         )
