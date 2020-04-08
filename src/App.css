@@ -104,7 +104,7 @@
 
 .master-home-container{
   display: grid;
-  grid-template-columns: 33% 33% 33% 
+  grid-template-columns: 33.3% 33.3% 33.3% 
 }
 
 .inner-container {

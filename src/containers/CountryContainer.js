@@ -11,7 +11,7 @@ class CountryContainer extends React.Component {
 
     render(){
         return(
-            <div className="source-container">
+            <div className="source-container" style={{marginLeft: "13%"}}>
             <h1 className="container-headers"> Countries Followed: </h1>
             <div className="inner-container">
                 <br></br>

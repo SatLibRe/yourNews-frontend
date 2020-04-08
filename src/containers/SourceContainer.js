@@ -22,7 +22,7 @@ class SourceContainer extends React.Component {
 
     render(){
         return(
-            <div className="source-container">
+            <div className="source-container" >
                 <h1 className="container-headers"> Sources Followed: </h1>
                 <div className="inner-container">
                     <br></br>

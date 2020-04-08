@@ -12,7 +12,7 @@ class CustomNewsContainer extends React.Component {
 
     render(){
         return(
-            <div className="source-container">
+            <div className="source-container" style={{marginLeft: "18%"}}>
                 <h1 className="container-headers"> Keywords Followed: </h1>
                 <div>
                     <div className="inner-container">
