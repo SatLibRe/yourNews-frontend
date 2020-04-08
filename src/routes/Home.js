@@ -40,6 +40,7 @@ class Home extends React.Component {
         this.setState({
             countryHeadlines: []
         })
+        this.props.handleAppStateCountryRemoval(e)
         e.target.remove()
         fetch(`http://localhost:3000/countryusers/${e.target.id}`, {
             method: 'DELETE'
