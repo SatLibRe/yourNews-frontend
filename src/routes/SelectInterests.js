@@ -61,6 +61,7 @@ class SelectInterests extends React.Component {
                                         <br/>
                                         {source.name}
                                     <input
+                                        checked = {this.props.checkChecked(source.id)}
                                         name={source.id}
                                         type="checkbox"
                                         onChange={this.props.handleSourcesInputChange} 
