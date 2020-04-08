@@ -152,13 +152,13 @@ class App extends React.Component {
     }
   }
 
-  // handleAppStateSourceRemoval = (e) => {
-  //   console.log(this.state.sources)
-  //   console.log(e.target.innerText)
-  //   this.setState({
-  //     sources: this.state.sources.filter(name => name != e.target.innerText.split(" ")[1])
-  //   })
-  // }
+  handleAppStateSourceRemoval = (e) => {
+    console.log(this.state.sources)
+    console.log(e.target.innerText)
+    this.setState({
+      sources: this.state.sources.filter(name => name != e.target.innerText.split(" ")[1])
+    })
+  }
 
   handleCountriesInputChange = (e) => {
     if(e.target.checked === true){

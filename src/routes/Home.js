@@ -27,6 +27,7 @@ class Home extends React.Component {
         this.setState({
             sourceHeadlines: []
         })
+        this.props.handleAppStateSourceRemoval(e)
         e.target.remove()
         fetch(`http://localhost:3000/usersources/${e.target.id}`, {
             method: 'DELETE'
