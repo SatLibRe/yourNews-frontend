@@ -48,6 +48,8 @@ class App extends React.Component {
       this.setState({
         alertTriggered: true
       })
+
+      e.target.reset()
     // }
   
     
