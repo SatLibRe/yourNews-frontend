@@ -44,14 +44,9 @@ class App extends React.Component {
 
   handleSelectInterests = (e) => {
     e.preventDefault()
-    // if(this.state.sources.length > 1 || this.state.countries.length > 1 || this.state.custom1.length > 1 || this.state.custom2.length > 1){
       this.setState({
         alertTriggered: true
       })
-
-      e.target.reset()
-    // }
-  
     
     if(this.state.custom1.length >= 2){
       fetch("http://localhost:3000/customqueries", {
