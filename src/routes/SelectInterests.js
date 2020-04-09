@@ -88,9 +88,7 @@ class SelectInterests extends React.Component {
                                     </label> )}
                                 </div>
                             </div>
-                        {/* </div> */}
                         
-                        {/* <div className="selection-container"> */}
                         <h1 className="choose-headers"> Custom News </h1>
                             <div className="inner-choose-div">
                                 <div className="inner-inner-choose-div"> 
