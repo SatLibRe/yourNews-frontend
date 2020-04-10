@@ -11,6 +11,7 @@ import Alert from '@material-ui/lab/Alert';
 import Nav from "./components/Nav.js"
 
 
+
 class App extends React.Component {
 
   state = {
@@ -22,6 +23,131 @@ class App extends React.Component {
     custom2: "",
     alertTriggered: false
   }
+
+
+  componentDidMount(){
+    const user_id = localStorage.user_id
+
+    if(user_id){
+      fetch("http://localhost:3000/autologin", {
+        headers: {
+          "Authorization": user_id
+        }
+      }).then(resp => resp.json())
+      .then(resp => {
+        if(resp.errors){
+          console.log(resp.errors)
+        } else {
+          console.log(resp)
+          this.setUser(resp)
+        }
+      })
+    }
+  }
+
+
+      handleSelectInterests = (e) => {
+          e.preventDefault()
+            this.setState({
+              alertTriggered: true
+            })
+          
+          if(this.state.custom1.length >= 2){
+            fetch("http://localhost:3000/customqueries", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({
+                name: this.state.custom1,
+              })
+            }).then( response => response.json())
+            .then(response => {
+              fetch("http://localhost:3000/customqueryusers", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                  user_id: localStorage.user_id,
+                  custom_query_id: response.id
+                })
+              })
+            })
+          }
+      
+          if(this.state.custom2.length >= 2){
+            fetch("http://localhost:3000/customqueries", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({
+                name: this.state.custom2,
+              })
+            }).then( response => response.json())
+            .then(response => {
+              fetch("http://localhost:3000/customqueryusers", {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                  user_id: localStorage.user_id,
+                  custom_query_id: response.id
+                })
+              })
+            })
+          }
+        
+          this.state.countries.forEach(country => {
+            fetch("http://localhost:3000/countries", {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({
+                name: country
+              })
+            }).then(response => response.json())
+            .then(response => {
+              fetch(`http://localhost:3000/countryusers`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                  user_id: localStorage.user_id,
+                  country_id: response.id
+                })
+              })
+            })
+          })
+          
+          this.state.sources.forEach(source =>{
+            fetch(`http://localhost:3000/sources`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+              },
+              body: JSON.stringify({
+                name: source
+              })
+            }).then(response => response.json())
+            .then(response => {
+              fetch(`http://localhost:3000/usersources`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json;charset=utf-8'
+                },
+                body: JSON.stringify({
+                  user_id: localStorage.user_id,
+                  source_id: response.id
+                })
+              })
+            })
+          })
+        }
 
   setUser = (response) => {
     this.setState({
@@ -45,108 +171,6 @@ class App extends React.Component {
     return this.state.countries.includes(name) 
   }
 
-  handleSelectInterests = (e) => {
-    e.preventDefault()
-      this.setState({
-        alertTriggered: true
-      })
-    
-    if(this.state.custom1.length >= 2){
-      fetch("http://localhost:3000/customqueries", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          name: this.state.custom1,
-        })
-      }).then( response => response.json())
-      .then(response => {
-        fetch("http://localhost:3000/customqueryusers", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify({
-            user_id: localStorage.user_id,
-            custom_query_id: response.id
-          })
-        })
-      })
-    }
-
-    if(this.state.custom2.length >= 2){
-      fetch("http://localhost:3000/customqueries", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          name: this.state.custom2,
-        })
-      }).then( response => response.json())
-      .then(response => {
-        fetch("http://localhost:3000/customqueryusers", {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify({
-            user_id: localStorage.user_id,
-            custom_query_id: response.id
-          })
-        })
-      })
-    }
-  
-    this.state.countries.forEach(country => {
-      fetch("http://localhost:3000/countries", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          name: country
-        })
-      }).then(response => response.json())
-      .then(response => {
-        fetch(`http://localhost:3000/countryusers`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify({
-            user_id: localStorage.user_id,
-            country_id: response.id
-          })
-        })
-      })
-    })
-    
-    this.state.sources.forEach(source =>{
-      fetch(`http://localhost:3000/sources`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify({
-          name: source
-        })
-      }).then(response => response.json())
-      .then(response => {
-        fetch(`http://localhost:3000/usersources`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-          },
-          body: JSON.stringify({
-            user_id: localStorage.user_id,
-            source_id: response.id
-          })
-        })
-      })
-    })
-  }
 
   handleSourcesInputChange = (e) => {
     if(e.target.checked === true){
@@ -190,15 +214,25 @@ class App extends React.Component {
     })
   }
 
+  handleLogout = () => {
+    this.setState({
+      currentUser: ""
+    }, () => {
+      localStorage.removeItem("user_id")
+    })
+  }
+
+
+
 
   render(){
     return (
       <Router >
         {this.state.reload && <Redirect to="/home" /> }
-        <Route path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
-        <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route path='/selectinterests' render={(props) => <SelectInterests currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
-        <Route path='/home' render={(props) => <Home currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
+        <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
+        <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
+        <Route exact path='/selectinterests' render={(props) => <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
+        <Route exact path='/home' render={(props) => <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
       </Router>
     );
   }

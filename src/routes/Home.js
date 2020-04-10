@@ -122,7 +122,7 @@ class Home extends React.Component {
         
         return(
         <React.Fragment>
-            <Nav history={this.props.history} currentUser={this.props.currentUser}/>
+            <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser}/>
             <div className="master-home-container">
                 <SourceContainer  sources={this.state.sources} handleRemove={this.handleSourceRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
                 <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
