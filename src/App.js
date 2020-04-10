@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import SignUp from "./routes/SignUp.js"
 import Login from "./routes/Login.js"
 import Home from "./routes/Home.js"
 import SelectInterests from "./routes/SelectInterests.js"
@@ -24,8 +25,9 @@ class App extends React.Component {
   setUser = (response) => {
     this.setState({
       currentUser: response
+    }, () => {
+      localStorage.user_id = this.state.currentUser.id  
     })
-    localStorage.user_id = this.state.currentUser.id
   }
 
   setAlertFalse = () => {
@@ -192,7 +194,8 @@ class App extends React.Component {
     return (
       <Router >
         {this.state.reload && <Redirect to="/home" /> }
-        <Route path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
+        <Route path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
+        <Route path='/login' render={(props) => <Login {...props} />} />
         <Route path='/selectinterests' render={(props) => <SelectInterests checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
         <Route path='/home' render={(props) => <Home handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
       </Router>
