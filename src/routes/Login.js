@@ -5,7 +5,8 @@ import SignInSide from "../components/SignInSide"
 class Login extends React.Component {
 
     state = {
-        name: ""
+        name: "",
+        password: ""
     }
 
     handleLoginFormChange = e => {
@@ -22,7 +23,8 @@ class Login extends React.Component {
           'Content-Type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify({
-            name: this.state.name
+            name: this.state.name,
+            password: this.state.password,
         })
       }).then(response => response.json())
       .then(response => {

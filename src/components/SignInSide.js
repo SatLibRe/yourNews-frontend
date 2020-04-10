@@ -88,7 +88,7 @@ export default function SignInSide(props) {
               autoFocus
               onChange={props.handleLoginFormChange}
             />
-            {/* <TextField
+            <TextField
               variant="outlined"
               margin="normal"
               required
@@ -98,7 +98,8 @@ export default function SignInSide(props) {
               type="password"
               id="password"
               autoComplete="current-password"
-            /> */}
+              onChange={props.handleLoginFormChange}
+            />
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
