@@ -46,7 +46,7 @@ class SelectInterests extends React.Component {
         console.log(this.props)
         return(
             <React.Fragment>
-            <Nav history={this.props.history} setAlertFalse={this.props.setAlertFalse}/>
+            <Nav history={this.props.history} currentUser={this.props.currentUser} setAlertFalse={this.props.setAlertFalse}/>
                     {this.props.alertTriggered === true ?   <Alert variant="filled" severity="success">Selections added! Click HOME to check them out!</Alert> : null}
                     <Popup />
                 <form onSubmit={this.props.handleSelectInterests}>

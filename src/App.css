@@ -152,7 +152,9 @@
 }
 
 #select-interests {
-  margin-left: 85%;
+  white-space: nowrap;
+  margin-left: 1%;
+  margin-right: 1%;
 }
 
 .source-choose-div {
@@ -178,13 +180,20 @@
 
 /* Nav */
 
+.nav-current-user {
+  white-space: nowrap;
+  margin-left: 65%;
+  font-family: Roboto;
+  font-weight: 500;
+}
+
 #nav-logo {
   font-family: cursive;
   color: beige;
 }
 
 #home-button {
-  margin-left: 90%;
+  margin-left: 80%;
 }
 
 /* Dev */
