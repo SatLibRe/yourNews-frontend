@@ -67,8 +67,8 @@ export default function SignInSideLogin(props) {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
-      <Grid item xs={12} component={Paper} elevation={6} square>
+      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <h1 className="login-header">Your News</h1>
           <h6 className="login-subheader">curate your world</h6>
@@ -115,7 +115,7 @@ export default function SignInSideLogin(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="http://localhost:3001/signup" variant="body2" style={{marginLeft: "42%"}}>
+                <Link href="http://localhost:3001/signup" variant="body2" style={{marginLeft: "30%"}}>
                     Don't have an account? Register here!
                 </Link>
               </Grid>

@@ -50,7 +50,7 @@ export default function HideAppBar(props) {
         <AppBar color="secondary">
           <Toolbar>
             <p id="nav-logo"> YN </p>
-            <span className="nav-current-user"> CURRENTLY LOGGED IN AS: {props.currentUser.name}</span>
+            {props.currentUser ? <span className="nav-current-user"> CURRENTLY LOGGED IN AS: {props.currentUser.name}</span> : null}
             { props.history.location.pathname === "/home" ? <Button id="select-interests" color="inherit" onClick={() => props.history.push("/selectinterests")}> Add More Interests</Button> : <Button id="home-button" color="inherit" onClick={() => props.history.push("/home")}> Home </Button>}
             <Button color="inherit" onClick={() => pushToLogout(props)}> Logout</Button>
           </Toolbar>

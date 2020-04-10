@@ -67,8 +67,8 @@ export default function SignInSide(props) {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      {/* <Grid item xs={false} sm={4} md={7} className={classes.image} /> */}
+      <Grid item xs={12} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <h1 className="login-header">Your News</h1>
           <h6 className="login-subheader">curate your world</h6>
@@ -115,9 +115,9 @@ export default function SignInSide(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                {/* <Link href="#" variant="body2">
-                  Forgot password?
-                </Link> */}
+                <Link style={{marginLeft: "42%"}}href="http://localhost:3001/login" variant="body2">
+                  Already have an account? Login here.
+                </Link>
               </Grid>
               <Grid item className={classes.instruction}>
                   
