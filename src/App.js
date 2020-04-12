@@ -21,28 +21,33 @@ class App extends React.Component {
     reload: false,
     custom1: "",
     custom2: "",
-    alertTriggered: false
+    alertTriggered: false,
   }
+
+  
 
 
   componentDidMount(){
-    const user_id = localStorage.user_id
-    
-    if(user_id){
+    const token = localStorage.token
+    if(token){
       fetch("http://localhost:3000/autologin", {
         headers: {
-          "Authorization": user_id
+          "Authorization": token
         }
       }).then(resp => resp.json())
       .then(resp => {
-        if(resp.errors){
-          console.log(resp.errors)
-        } else {
-          console.log(resp)
-          this.setUser(resp)
+        
+          if(resp.errors){
+            console.log(resp.errors)
+          }  else {
+            console.log(resp)
+            this.setState({
+              currentUser: resp
+            })
+          }
         }
-      })
-    }
+      )
+    } 
   }
 
 
@@ -69,7 +74,7 @@ class App extends React.Component {
                   'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify({
-                  user_id: localStorage.user_id,
+                  user_id: this.state.currentUser.id,
                   custom_query_id: response.id
                 })
               })
@@ -93,7 +98,7 @@ class App extends React.Component {
                   'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify({
-                  user_id: localStorage.user_id,
+                  user_id: this.state.currentUser.id,
                   custom_query_id: response.id
                 })
               })
@@ -117,7 +122,7 @@ class App extends React.Component {
                   'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify({
-                  user_id: localStorage.user_id,
+                  user_id: this.state.currentUser.id,
                   country_id: response.id
                 })
               })
@@ -141,7 +146,7 @@ class App extends React.Component {
                   'Content-Type': 'application/json;charset=utf-8'
                 },
                 body: JSON.stringify({
-                  user_id: localStorage.user_id,
+                  user_id: this.state.currentUser.id,
                   source_id: response.id
                 })
               })
@@ -151,9 +156,9 @@ class App extends React.Component {
 
   setUser = (response) => {
     this.setState({
-      currentUser: response
+      currentUser: response.user
     }, () => {
-      localStorage.user_id = this.state.currentUser.id  
+      localStorage.token = response.token
     })
   }
 
@@ -170,7 +175,6 @@ class App extends React.Component {
   checkCountryChecked = (name) => {
     return this.state.countries.includes(name) 
   }
-
 
   handleSourcesInputChange = (e) => {
     if(e.target.checked === true){
@@ -218,7 +222,7 @@ class App extends React.Component {
     this.setState({
       currentUser: ""
     }, () => {
-      localStorage.removeItem("user_id")
+      localStorage.removeItem("token")
     })
   }
 
@@ -228,11 +232,11 @@ class App extends React.Component {
   render(){
     return (
       <Router >
-        {this.state.reload && <Redirect to="/home" /> }
+        {/* {this.state.reload && <Redirect to="/home" /> } */}
         <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
         <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route exact path='/selectinterests' render={(props) => <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} />} />
-        <Route exact path='/home' render={(props) => <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} />} />
+        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
+        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} /> : <Redirect to="/login" /> } />
       </Router>
     );
   }
