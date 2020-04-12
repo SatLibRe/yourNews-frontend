@@ -27,7 +27,7 @@ class App extends React.Component {
 
   componentDidMount(){
     const user_id = localStorage.user_id
-    debugger; 
+    
     if(user_id){
       fetch("http://localhost:3000/autologin", {
         headers: {

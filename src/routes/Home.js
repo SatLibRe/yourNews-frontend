@@ -5,6 +5,7 @@ import CustomNewsContainer from "../containers/CustomNewsContainer"
 import ArticleCard from "../components/ArticleCard"
 import Nav from "../components/Nav.js"
 import { APIKEY } from "../APIKEY.js"
+import Spinner from "../components/Spinner.js"
 
 class Home extends React.Component {
 
@@ -17,7 +18,8 @@ class Home extends React.Component {
         countryJoiners: [],
         custom_queries: [],
         customQueryHeadlines: [],
-        customQueryJoiners: []
+        customQueryJoiners: [],
+        loading: true
     }
 
     
@@ -69,7 +71,8 @@ class Home extends React.Component {
                 countries: response.countries,
                 countryJoiners: response.country_users,
                 custom_queries: response.custom_queries,
-                customQueryJoiners: response.custom_query_users 
+                customQueryJoiners: response.custom_query_users,
+                
             })
         }).then( () => this.state.sources.forEach(source => 
             {
@@ -100,7 +103,8 @@ class Home extends React.Component {
                 .then(response => response.json())
                 .then( response => {
                     this.setState({
-                        customQueryHeadlines: [...this.state.customQueryHeadlines, response.articles.slice(0,5)]
+                        customQueryHeadlines: [...this.state.customQueryHeadlines, response.articles.slice(0,5)],
+                        loading: false
                     })
                 })
         }))
@@ -123,11 +127,14 @@ class Home extends React.Component {
         return(
         <React.Fragment>
             <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser}/>
+            {this.state.loading ? <Spinner />
+            :  
             <div className="master-home-container">
                 <SourceContainer  sources={this.state.sources} handleRemove={this.handleSourceRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
                 <CountryContainer  countries={this.state.countries} handleRemove={this.handleCountryRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.countryJoiners} countryHeadlines={this.state.countryHeadlines}/>
                 <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/> 
             </div>
+            }
         </React.Fragment>
         )
     }

@@ -67,7 +67,13 @@ export default function SignInSideLogin(props) {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={false} sm={4} md={7}  >
+      <video autoPlay="autoplay" loop="loop" muted className={classes.Video} >
+                <source src="https://www.w3schools.com/tags/movie.mp4"
+type="video/mp4" />
+                Your browser does not support the video tag.
+            </video>
+        </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <h1 className="login-header">Your News</h1>
