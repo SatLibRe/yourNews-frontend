@@ -6,7 +6,8 @@ class SignUp extends React.Component {
 
     state = {
         name: "",
-        password: ""
+        password: "",
+        zipcode: ""
     }
 
     handleSignUpFormChange = e => {
@@ -25,6 +26,7 @@ class SignUp extends React.Component {
         body: JSON.stringify({
             name: this.state.name,
             password: this.state.password,
+            zipcode: this.state.zipcode
         })
       }).then(response => response.json())
       .then(response => {

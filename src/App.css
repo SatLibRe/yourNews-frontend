@@ -180,9 +180,22 @@
 
 /* Nav */
 
+.weather {
+  white-space: nowrap;
+  margin-left: 2%;
+  font-family: Roboto;
+  font-weight: 500;
+  margin-bottom: 1%;
+}
+
+#weather-image{
+  width: 25px;
+  height: 25px
+}
+
 .nav-current-user {
   white-space: nowrap;
-  margin-left: 65%;
+  margin-left: 28%;
   font-family: Roboto;
   font-weight: 500;
 }
@@ -222,7 +235,6 @@
 .spinner {
   margin-left: 41%;
   margin-top: 20%;
-  
 }
 
 

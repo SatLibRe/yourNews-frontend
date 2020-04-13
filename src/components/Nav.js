@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Slide from '@material-ui/core/Slide';
 import Button from '@material-ui/core/Button';
+import Weather from "./Weather.js"
 
 
 
@@ -50,6 +51,7 @@ export default function HideAppBar(props) {
         <AppBar color="secondary">
           <Toolbar>
             <p id="nav-logo"> YN </p>
+            <Weather currentUser={props.currentUser} />
             {props.currentUser ? <span className="nav-current-user"> CURRENTLY LOGGED IN AS: {props.currentUser.name}</span> : null}
             { props.history.location.pathname === "/home" ? <Button id="select-interests" color="inherit" onClick={() => props.history.push("/selectinterests")}> Add More Interests</Button> : <Button id="home-button" color="inherit" onClick={() => props.history.push("/home")}> Home </Button>}
             <Button color="inherit" onClick={() => pushToLogout(props)}> Logout</Button>

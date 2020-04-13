@@ -85,7 +85,6 @@ export default function SignInSide(props) {
               label="name"
               name="name"
               autoComplete="name"
-              autoFocus
               onChange={props.handleSignUpFormChange}
             />
             <TextField
@@ -98,6 +97,18 @@ export default function SignInSide(props) {
               type="password"
               id="password"
               autoComplete="current-password"
+              onChange={props.handleSignUpFormChange}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              name="zipcode"
+              label="zipcode"
+              type="zipcode"
+              id="zipcode"
+              autoComplete="current-zipcode"
               onChange={props.handleSignUpFormChange}
             />
             {/* <FormControlLabel

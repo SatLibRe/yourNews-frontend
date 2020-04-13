@@ -59,55 +59,65 @@ class Home extends React.Component {
         })
     }
 
-    componentDidMount(){
+    handleFetches = () => {
         if(this.props.currentUser){
-                fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
-                .then(response => response.json())
-                .then(response => {
-                    this.setState({
-                        sources: response.sources, 
-                        sourceJoiners: response.user_sources,
-                        countries: response.countries,
-                        countryJoiners: response.country_users,
-                        custom_queries: response.custom_queries,
-                        customQueryJoiners: response.custom_query_users,
+            fetch(`http://localhost:3000/users/${this.props.currentUser.id}`)
+            .then(response => response.json())
+            .then(response => {
+                this.setState({
+                    sources: response.sources, 
+                    sourceJoiners: response.user_sources,
+                    countries: response.countries,
+                    countryJoiners: response.country_users,
+                    custom_queries: response.custom_queries,
+                    customQueryJoiners: response.custom_query_users,
+                })
+            }).then( () => this.state.sources.forEach(source => 
+                {
+                    fetch(`https://newsapi.org/v2/top-headlines?sources=${source.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
+                    .then(response => response.json())
+                    .then(response => {
+                        this.setState({
+                            sourceHeadlines: [...this.state.sourceHeadlines,response.articles.slice(0,5)]
+                        })
                     })
-                }).then( () => this.state.sources.forEach(source => 
-                    {
-                        fetch(`https://newsapi.org/v2/top-headlines?sources=${source.name}&apiKey=03c2753b10984b3ca161dbaf9e6bf35b`)
-                        .then(response => response.json())
-                        .then(response => {
-                            this.setState({
-                                sourceHeadlines: [...this.state.sourceHeadlines,response.articles.slice(0,5)]
-                            })
+    
+                    // let test = response.articles[0].source.id
+                    // let tester = {}
+                    // tester[test] = response.articles.slice(0,5)
+                    // this.setState({sourceHeadlines: [...this.state.sourceHeadlines,tester]})
+            })).then( () => this.state.countries.forEach(country => 
+                {
+                    fetch(`https://newsapi.org/v2/top-headlines?country=${country.name}&${APIKEY}`)
+                    .then(response => response.json())
+                    .then( response => {
+                        this.setState({
+                            countryHeadlines: [...this.state.countryHeadlines,response.articles.slice(0,5)]
                         })
-        
-                        // let test = response.articles[0].source.id
-                        // let tester = {}
-                        // tester[test] = response.articles.slice(0,5)
-                        // this.setState({sourceHeadlines: [...this.state.sourceHeadlines,tester]})
-                })).then( () => this.state.countries.forEach(country => 
-                    {
-                        fetch(`https://newsapi.org/v2/top-headlines?country=${country.name}&${APIKEY}`)
-                        .then(response => response.json())
-                        .then( response => {
-                            this.setState({
-                                countryHeadlines: [...this.state.countryHeadlines,response.articles.slice(0,5)]
-                            })
+                    })
+            })).then( () => this.state.custom_queries.forEach(query => 
+                {
+                    fetch(`https://newsapi.org/v2/everything?q=${query.name}&${APIKEY}`)
+                    .then(response => response.json())
+                    .then( response => {
+                        this.setState({
+                            customQueryHeadlines: [...this.state.customQueryHeadlines, response.articles.slice(0,5)],
+                            
                         })
-                })).then( () => this.state.custom_queries.forEach(query => 
-                    {
-                        fetch(`https://newsapi.org/v2/everything?q=${query.name}&${APIKEY}`)
-                        .then(response => response.json())
-                        .then( response => {
-                            this.setState({
-                                customQueryHeadlines: [...this.state.customQueryHeadlines, response.articles.slice(0,5)],
-                                
-                            })
-                        })
-                }))
-                this.setState({loading: false})
-            } 
+                    })
+            }))
+            this.setState({loading: false})
+        } 
+    }
+
+    componentDidMount(){
+        this.handleFetches()
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.currentUser === null && this.props.currentUser){
+            this.handleFetches()
+        }
     }
 
     joinerIdAssocMaker = (publishers) => {
@@ -124,7 +134,7 @@ class Home extends React.Component {
     render(){
         
         return(
-        <React.Fragment>
+        <React.Fragment>            
             <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser}/>
             {this.state.loading ? <Spinner />
             :  
@@ -134,6 +144,7 @@ class Home extends React.Component {
                 <CustomNewsContainer custom_queries={this.state.custom_queries} handleRemove={this.handleCustomNewsRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.customQueryJoiners} customQueryHeadlines={this.state.customQueryHeadlines}/> 
             </div>
             }
+            
         </React.Fragment>
         )
     }
