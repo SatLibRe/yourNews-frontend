@@ -12,6 +12,8 @@ import Grid from '@material-ui/core/Grid';
 // import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import Video from "../videos/video.mp4"
+import Wave from "../videos/wave_login_video.mp4"
 
 function Copyright() {
   return (
@@ -68,13 +70,12 @@ export default function SignInSideLogin(props) {
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
       <Grid item xs={false} sm={4} md={7}  >
-      <video autoPlay="autoplay" loop="loop" muted className={classes.Video} >
-                <source src="https://www.w3schools.com/tags/movie.mp4"
-type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-        </Grid>
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <video id="login-video"autoPlay="autoplay" loop="loop" muted className={classes.Video} >
+                  <source src={Video} type="video/mp4" />
+                  Your browser does not support the video tag.
+        </video>
+      </Grid>
+      <Grid item xs={12} sm={8} md={5} style={{zIndex: 1000}} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <h1 className="login-header">Your News</h1>
           <h6 className="login-subheader">curate your world</h6>

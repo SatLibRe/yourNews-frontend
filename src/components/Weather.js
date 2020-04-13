@@ -1,5 +1,6 @@
 import React from "react";
 import { APIKEYW } from "../APIKEYWEATHER.js"
+import Bar from "./BarLoader"
 
 export default class Weather extends React.Component {
 
@@ -45,7 +46,7 @@ componentDidUpdate(prevProps, prevState){
           {this.props.currentUser ? 
             <span> Current Weather For: {city}, {usState} {temp}°, {description} <img id="weather-image" src={`https://www.weatherbit.io/static/img/icons/${iconCode}.png`}/> </span>
             :
-            null
+            <Bar/>
           }
       </div>
     );
