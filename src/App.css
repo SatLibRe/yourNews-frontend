@@ -146,7 +146,7 @@
 
 .sources-selection-container {
   margin: 10%;
-  margin-left: 60%;
+  margin-left: 50%;
   height: fit-content;
   width: fit-content;
 }
@@ -167,9 +167,24 @@
   margin-left: 8%;
   background-color: #f1f2f6;
   border-radius: 6px;
+  font-family: Roboto;
 }
+
+.inner-source-choose-div {
+  margin-left: 8%;
+  background-color: #f1f2f6;
+  border-radius: 6px;
+  width: 125%;
+  font-family: Roboto;
+}
+
 .inner-inner-choose-div {
   margin: 8%;
+}
+
+.inner-inner-custom-choose-div {
+  margin: 8%;
+  height: 100px
 }
 
 

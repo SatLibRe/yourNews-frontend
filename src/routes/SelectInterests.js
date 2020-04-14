@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import Popup from "../components/Popup.js"
 import { APIKEY } from "../APIKEY.js"
+import TextField from '@material-ui/core/TextField';
+
 
 
 class SelectInterests extends React.Component {
@@ -55,13 +57,13 @@ class SelectInterests extends React.Component {
                     <div className="master-select-container">
                         <div className="sources-selection-container">
                         <h1 className="choose-headers"> Sources </h1>
-                            <div className="inner-choose-div">
+                            <div className="inner-source-choose-div">
                                 <div className="inner-inner-choose-div"> 
                                 {this.state.sources.map(source => 
                                     <label key={source.id}>
                                         <br/>
                                         {source.name}
-                                    <input
+                                    <Checkbox
                                         checked = {this.props.checkChecked(source.id)}
                                         name={source.id}
                                         type="checkbox"
@@ -80,7 +82,7 @@ class SelectInterests extends React.Component {
                                     <label key={country.id}>
                                         <br/>
                                         {country}
-                                    <input
+                                    <Checkbox
                                         checked = {this.props.checkCountryChecked(country)}
                                         name={country}
                                         type="checkbox"
@@ -92,11 +94,11 @@ class SelectInterests extends React.Component {
                         
                         <h1 className="choose-headers"> Custom News </h1>
                             <div className="inner-choose-div">
-                                <div className="inner-inner-choose-div"> 
+                                <div className="inner-inner-custom-choose-div"> 
                                     <label>
-                                        Keyword 1: <input type="text" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
+                                         <TextField type="text" label="Keyword-1" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
                                         <br></br>
-                                        Keyword 2: <input type="text" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
+                                        <TextField type="text" label="Keyword-2" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
                                     </label>
                                 </div>
                             </div>
