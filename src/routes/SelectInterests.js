@@ -18,14 +18,15 @@ class SelectInterests extends React.Component {
             {id: "WSJ", name: "WSJ"},
         ],
         countries: [
-            "us",
-            "ar",
-            "cn", 
-            "de", 
-            "au",
-            "fr",
-            "ru",
-            "kr"
+            "us: United States",
+            "gb: United Kingdom",
+            "cn: China", 
+            "de: Germany", 
+            "au: Australia",
+            "fr: France",
+            "ru: Russia",
+            "ca: Canada",
+            "jp: Japan"
         ],
         checked: false,
     }
@@ -78,7 +79,7 @@ class SelectInterests extends React.Component {
                                     {this.state.countries.map(country => 
                                     <label key={country.id}>
                                         <br/>
-                                        {country.toUpperCase()}
+                                        {country}
                                     <input
                                         checked = {this.props.checkCountryChecked(country)}
                                         name={country}

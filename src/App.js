@@ -178,7 +178,7 @@ class App extends React.Component {
   }
 
   checkCountryChecked = (name) => {
-    return this.state.countries.includes(name) 
+    return this.state.countries.includes(name.split(":")[0]) 
   }
 
   handleSourcesInputChange = (e) => {
@@ -208,11 +208,11 @@ class App extends React.Component {
   handleCountriesInputChange = (e) => {
     if(e.target.checked === true){
       this.setState({
-        countries: [...this.state.countries, e.target.name]
+        countries: [...this.state.countries, e.target.name.split(":")[0]]
       })     
     } else if(e.target.checked === false){
       this.setState({
-        countries: this.state.countries.filter(country => country != e.target.name)
+        countries: this.state.countries.filter(country => country != e.target.name.split(":")[0])
       }) 
     }
   }
