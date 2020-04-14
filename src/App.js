@@ -75,6 +75,10 @@ class App extends React.Component {
                   custom_query_id: response.id
                 })
               })
+            }).then(() => {
+              this.setState({
+                custom1: ""
+              })
             })
           }
       
@@ -98,6 +102,10 @@ class App extends React.Component {
                   user_id: this.state.currentUser.id,
                   custom_query_id: response.id
                 })
+              })
+            }).then(() => {
+              this.setState({
+                custom2: ""
               })
             })
           }
