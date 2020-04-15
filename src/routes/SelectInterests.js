@@ -1,6 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import Checkbox from '@material-ui/core/Checkbox';
 import Nav from "../components/Nav.js"
 import Button from '@material-ui/core/Button';
