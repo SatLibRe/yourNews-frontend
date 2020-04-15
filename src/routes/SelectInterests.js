@@ -97,9 +97,9 @@ class SelectInterests extends React.Component {
                             <div className="inner-choose-div">
                                 <div className="inner-inner-custom-choose-div"> 
                                     <label>
-                                         <TextField type="text" label="Keyword-1" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
+                                         <TextField type="text" label="Keyword-1" name="custom1" value={this.props.custom1} onChange={(e) => this.props.handleCustom1ChangeRedux(e.target.value)} />
                                         <br></br>
-                                        <TextField type="text" label="Keyword-2" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
+                                        <TextField type="text" label="Keyword-2" name="custom2" value={this.props.custom2} onChange={(e) => this.props.handleCustom2ChangeRedux(e.target.value)} />
                                     </label>
                                 </div>
                             </div>
@@ -114,7 +114,9 @@ class SelectInterests extends React.Component {
 function msp(state) {
     console.log("MSP", state)
     return {
-        alertTriggered: state.alertTriggered
+        alertTriggered: state.alertTriggered,
+        custom1: state.custom1,
+        custom2: state.custom2
     }
   }
 
@@ -122,6 +124,12 @@ function msp(state) {
     return {
         setAlertFalseRedux: () => {
             dispatch({type: "TRIGGER_ALERT_FALSE"})
+        },
+        handleCustom1ChangeRedux: (text) => {
+            dispatch({type: "HANDLE_CUSTOM1_CHANGE", payload: text })
+        },
+        handleCustom2ChangeRedux: (text) => {
+            dispatch({type: "HANDLE_CUSTOM2_CHANGE", payload: text})
         }
     }
   }

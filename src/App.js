@@ -51,14 +51,14 @@ class App extends React.Component {
           
           this.props.setAlertTrueRedux()
           
-          if(this.state.custom1.length >= 2){
+          if(this.props.custom1.length >= 2){
             fetch("http://localhost:3000/customqueries", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json;charset=utf-8'
               },
               body: JSON.stringify({
-                name: this.state.custom1,
+                name: this.props.custom1,
               })
             }).then( response => response.json())
             .then(response => {
@@ -73,20 +73,18 @@ class App extends React.Component {
                 })
               })
             }).then(() => {
-              this.setState({
-                custom1: ""
-              })
+              this.props.clearCustom1Redux()
             })
           }
       
-          if(this.state.custom2.length >= 2){
+          if(this.props.custom2.length >= 2){
             fetch("http://localhost:3000/customqueries", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json;charset=utf-8'
               },
               body: JSON.stringify({
-                name: this.state.custom2,
+                name: this.props.custom2,
               })
             }).then( response => response.json())
             .then(response => {
@@ -101,9 +99,7 @@ class App extends React.Component {
                 })
               })
             }).then(() => {
-              this.setState({
-                custom2: ""
-              })
+              this.props.clearCustom2Redux()
             })
           }
         
@@ -215,11 +211,12 @@ class App extends React.Component {
     }
   }
 
-  handleCustomFormChange = e => {
-    this.setState({
-      [e.target.name] : e.target.value
-    })
-  }
+  //moved to store
+  // handleCustomFormChange = e => {
+  //   this.setState({
+  //     [e.target.name] : e.target.value
+  //   })
+  // }
 
   handleLogout = () => {
     this.setState({
@@ -229,11 +226,6 @@ class App extends React.Component {
     })
   }
 
-  // moved to store
-  // handleLoading = () => {
-  //   this.setState({loading: false})
-  // }
-
 
   render(){
     console.log(this.props)
@@ -241,8 +233,8 @@ class App extends React.Component {
       <Router >
         <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
         <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
-        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} /> : <Redirect to="/login" /> } />
+        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} {...props}  handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
+        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval}  {...props} /> : <Redirect to="/login" /> } />
       </Router>
     );
   }
@@ -251,7 +243,8 @@ class App extends React.Component {
 function msp(state) {
   console.log("MSP", state)
   return {
-    beef: "Marco Pollo"
+    custom1: state.custom1,
+    custom2: state.custom2,
   }
 }
 
@@ -259,7 +252,14 @@ function mdp(dispatch){
   return {
       setAlertTrueRedux: () => {
           dispatch({type: "TRIGGER_ALERT_TRUE"})
+      },
+      clearCustom1Redux: () => {
+        dispatch({type: "HANDLE_CLEAR_CUSTOM1"})
+      },
+      clearCustom2Redux: () => {
+        dispatch({type: "HANDLE_CLEAR_CUSTOM2"})
       }
+
   }
 }
 
