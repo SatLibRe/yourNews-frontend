@@ -159,12 +159,6 @@ function msp(state){
     }
 }
 
-function mdp(dispatch){
-    return {
-        setLoadingFalseRedux: () => {
-            dispatch(setLoadingFalseRedux())
-        }
-    }
-}
+const mdp = { setLoadingFalseRedux }
 
 export default connect(msp, mdp)(Home)

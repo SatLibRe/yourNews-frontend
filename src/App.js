@@ -20,7 +20,7 @@ class App extends React.Component {
   state = {
     currentUser: null,
     sources: [],
-    countries: [],
+    countries: []
   }
 
       componentDidMount(){
@@ -248,19 +248,6 @@ function msp(state) {
   }
 }
 
-function mdp(dispatch){
-  return {
-      setAlertTrueRedux: () => {
-        dispatch(setAlertTrueRedux())
-      },
-      clearCustom1Redux: () => {
-        dispatch(clearCustom1Redux())
-      },
-      clearCustom2Redux: () => {
-        dispatch(clearCustom2Redux())
-      }
-
-  }
-}
+const mdp = { setAlertTrueRedux, clearCustom1Redux, clearCustom2Redux }
 
 export default connect(msp, mdp)(App);

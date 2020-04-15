@@ -18,10 +18,10 @@ export function setAlertFalseRedux(){
     return {type: "TRIGGER_ALERT_FALSE" }
 }
 
-export function handleCustom1Change(text){
+export function handleCustom1ChangeRedux(text){
     return {type: "HANDLE_CUSTOM1_CHANGE", payload: text}
 }
 
-export function handleCustom2Change(text){
+export function handleCustom2ChangeRedux(text){
     return {type: "HANDLE_CUSTOM2_CHANGE", payload: text}
 }

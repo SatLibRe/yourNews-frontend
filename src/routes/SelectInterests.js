@@ -10,7 +10,7 @@ import { APIKEY } from "../APIKEY.js"
 import TextField from '@material-ui/core/TextField';
 import { connect } from "react-redux"
 
-import {setAlertFalseRedux, handleCustom1Change, handleCustom2Change } from "../redux/actions"
+import {setAlertFalseRedux, handleCustom1ChangeRedux, handleCustom2ChangeRedux } from "../redux/actions"
 
 
 
@@ -122,18 +122,6 @@ function msp(state) {
     }
   }
 
-  function mdp(dispatch){
-    return {
-        setAlertFalseRedux: () => {
-            dispatch(setAlertFalseRedux())
-        },
-        handleCustom1ChangeRedux: (text) => {
-            dispatch(handleCustom1Change(text))
-        },
-        handleCustom2ChangeRedux: (text) => {
-            dispatch(handleCustom2Change(text))
-        }
-    }
-  }
+const mdp = { setAlertFalseRedux, handleCustom1ChangeRedux, handleCustom2ChangeRedux }
 
 export default connect(msp, mdp)(SelectInterests)
