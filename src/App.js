@@ -50,9 +50,8 @@ class App extends React.Component {
 
       handleSelectInterests = (e) => {
           e.preventDefault()
-            this.setState({
-              alertTriggered: true
-            })
+          
+          this.props.setAlertTrueRedux()
           
           if(this.state.custom1.length >= 2){
             fetch("http://localhost:3000/customqueries", {
@@ -238,11 +237,12 @@ class App extends React.Component {
 
 
   render(){
+    console.log(this.props)
     return (
       <Router >
         <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
         <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
+        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
         <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLoading={this.handleLoading} loading={this.state.loading} handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} /> : <Redirect to="/login" /> } />
       </Router>
     );
@@ -256,4 +256,12 @@ function msp(state) {
   }
 }
 
-export default connect(msp)(App);
+function mdp(dispatch){
+  return {
+      setAlertTrueRedux: () => {
+          dispatch({type: "TRIGGER_ALERT_TRUE"})
+      }
+  }
+}
+
+export default connect(msp, mdp)(App);

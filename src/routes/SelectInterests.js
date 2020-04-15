@@ -33,11 +33,6 @@ class SelectInterests extends React.Component {
         ],
         checked: false,
     }
-
-    setAlertFalse = (props) => {
-        console.log(this.props.alertTriggered)
-        
-    }
       
     componentDidMount(){
         fetch(`https://newsapi.org/v2/sources?${APIKEY}`)
@@ -48,10 +43,11 @@ class SelectInterests extends React.Component {
             sources: response.sources
         })
       })
-      this.setAlertFalse()
+      this.props.setAlertFalseRedux()
     }
 
     render(){
+        console.log(this.props, "Props Store")
         return(
             <React.Fragment>
             <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser} setAlertFalse={this.props.setAlertFalse}/>
@@ -118,8 +114,16 @@ class SelectInterests extends React.Component {
 function msp(state) {
     console.log("MSP", state)
     return {
-        alertTriggered: false
+        alertTriggered: state.alertTriggered
     }
   }
 
-export default connect(msp)(SelectInterests)
+  function mdp(dispatch){
+    return {
+        setAlertFalseRedux: () => {
+            dispatch({type: "TRIGGER_ALERT_FALSE"})
+        }
+    }
+  }
+
+export default connect(msp, mdp)(SelectInterests)

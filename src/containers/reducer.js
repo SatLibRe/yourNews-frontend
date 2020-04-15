@@ -11,8 +11,10 @@ const initialState = {
 
 export const reducer = (prevState=initialState, action) => {
     switch(action.type){
-        case "TRIGGER_ALERT":
-            return {...this.state, alertTriggered: false}
+        case "TRIGGER_ALERT_FALSE":
+            return {...prevState, alertTriggered: false}
+        case "TRIGGER_ALERT_TRUE":
+            return {...prevState, alertTriggered: true}
         default:
             return prevState
     }
