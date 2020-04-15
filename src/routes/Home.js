@@ -8,6 +8,9 @@ import { APIKEY } from "../APIKEY.js"
 import Spinner from "../components/Spinner.js"
 import { connect } from "react-redux"
 
+import { setLoadingFalseRedux } from "../redux/actions"
+
+
 class Home extends React.Component {
 
     state = {
@@ -159,7 +162,7 @@ function msp(state){
 function mdp(dispatch){
     return {
         setLoadingFalseRedux: () => {
-            dispatch({type: "TRIGGER_LOADING_FALSE"})
+            dispatch(setLoadingFalseRedux())
         }
     }
 }

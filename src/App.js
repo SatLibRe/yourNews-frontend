@@ -11,6 +11,8 @@ import Alert from '@material-ui/lab/Alert';
 import Nav from "./components/Nav.js"
 import { connect } from "react-redux"
 
+import { setAlertTrueRedux, clearCustom1Redux, clearCustom2Redux } from "./redux/actions"
+
 
 
 class App extends React.Component {
@@ -19,8 +21,6 @@ class App extends React.Component {
     currentUser: null,
     sources: [],
     countries: [],
-    custom1: "",
-    custom2: "",
   }
 
       componentDidMount(){
@@ -251,13 +251,13 @@ function msp(state) {
 function mdp(dispatch){
   return {
       setAlertTrueRedux: () => {
-          dispatch({type: "TRIGGER_ALERT_TRUE"})
+        dispatch(setAlertTrueRedux())
       },
       clearCustom1Redux: () => {
-        dispatch({type: "HANDLE_CLEAR_CUSTOM1"})
+        dispatch(clearCustom1Redux())
       },
       clearCustom2Redux: () => {
-        dispatch({type: "HANDLE_CLEAR_CUSTOM2"})
+        dispatch(clearCustom2Redux())
       }
 
   }
