@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Redirect, useHistory } from "react-router-dom"
 import Alert from '@material-ui/lab/Alert';
 import Nav from "./components/Nav.js"
+import { connect } from "react-redux"
 
 
 
@@ -21,7 +22,6 @@ class App extends React.Component {
     reload: false,
     custom1: "",
     custom2: "",
-    alertTriggered: false,
     loading: true
   }
 
@@ -167,11 +167,12 @@ class App extends React.Component {
     })
   }
 
-  setAlertFalse = () => {
-    this.setState({
-      alertTriggered: false
-    })
-  }
+  //moved to store
+  // setAlertFalse = () => {
+  //   this.setState({
+  //     alertTriggered: false
+  //   })
+  // }
 
   checkChecked = (name) => {
     return this.state.sources.includes(name) 
@@ -239,7 +240,6 @@ class App extends React.Component {
   render(){
     return (
       <Router >
-        {/* {this.state.reload && <Redirect to="/home" /> } */}
         <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
         <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
         <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
@@ -249,4 +249,11 @@ class App extends React.Component {
   }
 }
 
-export default App;
+function msp(state) {
+  console.log("MSP", state)
+  return {
+    beef: "Marco Pollo"
+  }
+}
+
+export default connect(msp)(App);

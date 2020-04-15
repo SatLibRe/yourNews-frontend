@@ -8,6 +8,7 @@ import Alert from '@material-ui/lab/Alert';
 import Popup from "../components/Popup.js"
 import { APIKEY } from "../APIKEY.js"
 import TextField from '@material-ui/core/TextField';
+import { connect } from "react-redux"
 
 
 
@@ -32,6 +33,11 @@ class SelectInterests extends React.Component {
         ],
         checked: false,
     }
+
+    setAlertFalse = (props) => {
+        console.log(this.props.alertTriggered)
+        
+    }
       
     componentDidMount(){
         fetch(`https://newsapi.org/v2/sources?${APIKEY}`)
@@ -42,11 +48,10 @@ class SelectInterests extends React.Component {
             sources: response.sources
         })
       })
-      this.props.setAlertFalse()
+      this.setAlertFalse()
     }
 
     render(){
-        console.log(this.props)
         return(
             <React.Fragment>
             <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser} setAlertFalse={this.props.setAlertFalse}/>
@@ -110,4 +115,11 @@ class SelectInterests extends React.Component {
     }
 }
 
-export default SelectInterests
+function msp(state) {
+    console.log("MSP", state)
+    return {
+        alertTriggered: false
+    }
+  }
+
+export default connect(msp)(SelectInterests)
