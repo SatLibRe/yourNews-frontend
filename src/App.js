@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import SignUp from "./routes/SignUp.js"
 import Login from "./routes/Login.js"
