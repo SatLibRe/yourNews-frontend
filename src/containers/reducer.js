@@ -15,6 +15,8 @@ export const reducer = (prevState=initialState, action) => {
             return {...prevState, alertTriggered: false}
         case "TRIGGER_ALERT_TRUE":
             return {...prevState, alertTriggered: true}
+        case "TRIGGER_LOADING_FALSE":
+            return {...prevState, loading: false}
         default:
             return prevState
     }

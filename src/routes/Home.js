@@ -6,6 +6,7 @@ import ArticleCard from "../components/ArticleCard"
 import Nav from "../components/Nav.js"
 import { APIKEY } from "../APIKEY.js"
 import Spinner from "../components/Spinner.js"
+import { connect } from "react-redux"
 
 class Home extends React.Component {
 
@@ -19,7 +20,6 @@ class Home extends React.Component {
         custom_queries: [],
         customQueryHeadlines: [],
         customQueryJoiners: [],
-        loading: true,
     }
 
 
@@ -106,7 +106,7 @@ class Home extends React.Component {
                         })
                     })
             }))
-            this.setState({loading: false})
+            this.props.setLoadingFalseRedux()
         } 
     }
 
@@ -136,7 +136,7 @@ class Home extends React.Component {
         return(
         <React.Fragment>            
             <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser}/>
-            {this.state.loading ? <Spinner />
+            {this.props.loading ? <Spinner />
             :  
             <div className="master-home-container">
                 <SourceContainer  sources={this.state.sources} handleRemove={this.handleSourceRemove} joinerIdAssocMaker={this.joinerIdAssocMaker} joiners={this.state.sourceJoiners} sourceHeadlines={this.state.sourceHeadlines}/>
@@ -150,4 +150,18 @@ class Home extends React.Component {
     }
 }
 
-export default Home
+function msp(state){
+    return {
+        loading: state.loading
+    }
+}
+
+function mdp(dispatch){
+    return {
+        setLoadingFalseRedux: () => {
+            dispatch({type: "TRIGGER_LOADING_FALSE"})
+        }
+    }
+}
+
+export default connect(msp, mdp)(Home)

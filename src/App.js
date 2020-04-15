@@ -19,10 +19,8 @@ class App extends React.Component {
     currentUser: null,
     sources: [],
     countries: [],
-    reload: false,
     custom1: "",
     custom2: "",
-    loading: true
   }
 
       componentDidMount(){
@@ -231,9 +229,10 @@ class App extends React.Component {
     })
   }
 
-  handleLoading = () => {
-    this.setState({loading: false})
-  }
+  // moved to store
+  // handleLoading = () => {
+  //   this.setState({loading: false})
+  // }
 
 
   render(){
@@ -243,7 +242,7 @@ class App extends React.Component {
         <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
         <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
         <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
-        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLoading={this.handleLoading} loading={this.state.loading} handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} /> : <Redirect to="/login" /> } />
+        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} /> : <Redirect to="/login" /> } />
       </Router>
     );
   }
