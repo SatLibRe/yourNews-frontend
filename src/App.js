@@ -5,9 +5,7 @@ import Login from "./routes/Login.js"
 import Home from "./routes/Home.js"
 import SelectInterests from "./routes/SelectInterests.js"
 import { BrowserRouter as Router, Route} from 'react-router-dom';
-import { Redirect, useHistory } from "react-router-dom"
-import Alert from '@material-ui/lab/Alert';
-import Nav from "./components/Nav.js"
+import { Redirect } from "react-router-dom"
 
 
 
