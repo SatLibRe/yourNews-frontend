@@ -1,8 +1,9 @@
 import React from "react";
 import { APIKEYW } from "../APIKEYWEATHER.js"
 import Bar from "./BarLoader"
+import { connect } from "react-redux"
 
-export default class Weather extends React.Component {
+class Weather extends React.Component {
 
 state = {
     degrees: "",
@@ -52,3 +53,10 @@ componentDidUpdate(prevProps, prevState){
     );
   }
 }
+function msp(state){
+    return {
+        currentUser: state.currentUser
+    }
+}
+
+export default connect(msp)(Weather)

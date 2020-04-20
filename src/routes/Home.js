@@ -155,7 +155,8 @@ class Home extends React.Component {
 
 function msp(state){
     return {
-        loading: state.loading
+        loading: state.loading,
+        currentUser: state.currentUser
     }
 }
 

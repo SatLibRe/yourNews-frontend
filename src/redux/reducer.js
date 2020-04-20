@@ -24,6 +24,10 @@ export const reducer = (prevState=initialState, action) => {
             return {...prevState, custom1: ""}
         case "HANDLE_CLEAR_CUSTOM2":
             return {...prevState, custom2: ""}
+        case "AUTO_LOGIN":
+            return {...prevState, currentUser: action.payload}
+        case "SET_CURRENT_USER":
+            return {...prevState, currentUser: action.payload}
         default:
             return prevState
     }

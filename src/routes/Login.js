@@ -1,5 +1,8 @@
 import React from 'react';
 import SignInSideLogin from "../components/SignInSideLogin"
+import { connect } from "react-redux"
+
+import { setCurrentUser } from "../redux/actions"
 
 class Login extends React.Component {
 
@@ -25,11 +28,11 @@ class Login extends React.Component {
           body: JSON.stringify(this.state)
         }).then(response => response.json())
         .then(response => {
-            
             if(response.errors){
                 alert(response.errors)
             } else {
-                this.props.setUser(response)
+                this.props.setCurrentUser(response)
+                localStorage.token = response.token
                 this.props.history.push("/home")
             }
         })
@@ -37,11 +40,12 @@ class Login extends React.Component {
 
 
     render(){
-        console.log(this.props.history)
         return(
             <SignInSideLogin handleLoginFormChange={this.handleLoginFormChange} handleSubmit={this.handleSubmit}/>
         )
     }
 }
 
-export default Login
+
+const mdp = { setCurrentUser }
+export default connect(null,mdp)(Login)

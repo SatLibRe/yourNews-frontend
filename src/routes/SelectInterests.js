@@ -15,11 +15,7 @@ import {setAlertFalseRedux, handleCustom1ChangeRedux, handleCustom2ChangeRedux }
 class SelectInterests extends React.Component {
 
     state = {
-        sources: [
-            {id: "abc-news", name: "ABC News"},
-            {id: "bloom", name: "Bloomberg"},
-            {id: "WSJ", name: "WSJ"},
-        ],
+        sources: [],
         countries: [
             "us: United States",
             "gb: United Kingdom",
@@ -115,6 +111,7 @@ function msp(state) {
     console.log("MSP", state)
     return {
         alertTriggered: state.alertTriggered,
+        currentUser: state.currentUser,
         custom1: state.custom1,
         custom2: state.custom2
     }

@@ -25,3 +25,25 @@ export function handleCustom1ChangeRedux(text){
 export function handleCustom2ChangeRedux(text){
     return {type: "HANDLE_CUSTOM2_CHANGE", payload: text}
 }
+
+export function currentUserFetch(token){
+    return function(dispatch){
+        fetch("http://localhost:3000/autologin", {
+            headers: {
+                "Authorization": token
+              }
+        }).then(resp => resp.json())
+        .then(resp => {
+            if(resp.errors){
+              console.log(resp.errors)
+            }  else {
+              dispatch({type: "AUTO_LOGIN", payload: resp})
+            }
+          }
+        )
+    }
+}
+
+export function setCurrentUser(resp){
+    return {type: "SET_CURRENT_USER", payload: resp}
+}
