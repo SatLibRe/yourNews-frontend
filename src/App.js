@@ -6,6 +6,11 @@ import Home from "./routes/Home.js"
 import SelectInterests from "./routes/SelectInterests.js"
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { Redirect } from "react-router-dom"
+import Alert from '@material-ui/lab/Alert';
+import Nav from "./components/Nav.js"
+import { connect } from "react-redux"
+
+import { setAlertTrueRedux, clearCustom1Redux, clearCustom2Redux } from "./redux/actions"
 
 
 
@@ -14,12 +19,7 @@ class App extends React.Component {
   state = {
     currentUser: null,
     sources: [],
-    countries: [],
-    reload: false,
-    custom1: "",
-    custom2: "",
-    alertTriggered: false,
-    loading: true
+    countries: []
   }
 
       componentDidMount(){
@@ -47,18 +47,17 @@ class App extends React.Component {
 
       handleSelectInterests = (e) => {
           e.preventDefault()
-            this.setState({
-              alertTriggered: true
-            })
           
-          if(this.state.custom1.length >= 2){
+          this.props.setAlertTrueRedux()
+          
+          if(this.props.custom1.length >= 2){
             fetch("http://localhost:3000/customqueries", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json;charset=utf-8'
               },
               body: JSON.stringify({
-                name: this.state.custom1,
+                name: this.props.custom1,
               })
             }).then( response => response.json())
             .then(response => {
@@ -73,20 +72,18 @@ class App extends React.Component {
                 })
               })
             }).then(() => {
-              this.setState({
-                custom1: ""
-              })
+              this.props.clearCustom1Redux()
             })
           }
       
-          if(this.state.custom2.length >= 2){
+          if(this.props.custom2.length >= 2){
             fetch("http://localhost:3000/customqueries", {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json;charset=utf-8'
               },
               body: JSON.stringify({
-                name: this.state.custom2,
+                name: this.props.custom2,
               })
             }).then( response => response.json())
             .then(response => {
@@ -101,9 +98,7 @@ class App extends React.Component {
                 })
               })
             }).then(() => {
-              this.setState({
-                custom2: ""
-              })
+              this.props.clearCustom2Redux()
             })
           }
         
@@ -164,11 +159,12 @@ class App extends React.Component {
     })
   }
 
-  setAlertFalse = () => {
-    this.setState({
-      alertTriggered: false
-    })
-  }
+  //moved to store
+  // setAlertFalse = () => {
+  //   this.setState({
+  //     alertTriggered: false
+  //   })
+  // }
 
   checkChecked = (name) => {
     return this.state.sources.includes(name) 
@@ -214,11 +210,12 @@ class App extends React.Component {
     }
   }
 
-  handleCustomFormChange = e => {
-    this.setState({
-      [e.target.name] : e.target.value
-    })
-  }
+  //moved to store
+  // handleCustomFormChange = e => {
+  //   this.setState({
+  //     [e.target.name] : e.target.value
+  //   })
+  // }
 
   handleLogout = () => {
     this.setState({
@@ -228,22 +225,28 @@ class App extends React.Component {
     })
   }
 
-  handleLoading = () => {
-    this.setState({loading: false})
-  }
-
 
   render(){
+    console.log(this.props)
     return (
       <Router >
-        {/* {this.state.reload && <Redirect to="/home" /> } */}
         <Route exact path='/signup' render={(props) => <SignUp {...props} setUser={this.setUser} />} />
         <Route exact path='/login' render={(props) => <Login {...props} setUser={this.setUser} />} />
-        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} setAlertFalse={this.setAlertFalse} alertTriggered={this.state.alertTriggered} {...props} custom1={this.state.custom1} custom2={this.state.custom2} handleCustomFormChange={this.handleCustomFormChange}  checked={this.state.checked} handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
-        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLoading={this.handleLoading} loading={this.state.loading} handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval} custom1={this.state.custom1} custom2={this.state.custom2} {...props} /> : <Redirect to="/login" /> } />
+        <Route exact path='/selectinterests' render={(props) => localStorage.token ? <SelectInterests handleLogout={this.handleLogout} currentUser={this.state.currentUser} checkCountryChecked={this.checkCountryChecked} checkChecked={this.checkChecked} {...props}  handleSelectInterests={this.handleSelectInterests} handleSourcesInputChange={this.handleSourcesInputChange} handleCountriesInputChange={this.handleCountriesInputChange} /> : <Redirect to="/login" />} />
+        <Route exact path='/home' render={(props) => localStorage.token ? <Home handleLogout={this.handleLogout} currentUser={this.state.currentUser} handleAppStateCountryRemoval={this.handleAppStateCountryRemoval} handleAppStateSourceRemoval={this.handleAppStateSourceRemoval}  {...props} /> : <Redirect to="/login" /> } />
       </Router>
     );
   }
 }
 
-export default App;
+function msp(state) {
+  console.log("MSP", state)
+  return {
+    custom1: state.custom1,
+    custom2: state.custom2,
+  }
+}
+
+const mdp = { setAlertTrueRedux, clearCustom1Redux, clearCustom2Redux }
+
+export default connect(msp, mdp)(App);

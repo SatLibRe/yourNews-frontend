@@ -6,6 +6,9 @@ import Alert from '@material-ui/lab/Alert';
 import Popup from "../components/Popup.js"
 import { APIKEY } from "../APIKEY.js"
 import TextField from '@material-ui/core/TextField';
+import { connect } from "react-redux"
+
+import {setAlertFalseRedux, handleCustom1ChangeRedux, handleCustom2ChangeRedux } from "../redux/actions"
 
 
 
@@ -40,11 +43,11 @@ class SelectInterests extends React.Component {
             sources: response.sources
         })
       })
-      this.props.setAlertFalse()
+      this.props.setAlertFalseRedux()
     }
 
     render(){
-        console.log(this.props)
+        console.log(this.props, "Props Store")
         return(
             <React.Fragment>
             <Nav history={this.props.history} handleLogout={this.props.handleLogout} currentUser={this.props.currentUser} setAlertFalse={this.props.setAlertFalse}/>
@@ -94,9 +97,9 @@ class SelectInterests extends React.Component {
                             <div className="inner-choose-div">
                                 <div className="inner-inner-custom-choose-div"> 
                                     <label>
-                                         <TextField type="text" label="Keyword-1" name="custom1" value={this.props.custom1} onChange={this.props.handleCustomFormChange} />
+                                         <TextField type="text" label="Keyword-1" name="custom1" value={this.props.custom1} onChange={(e) => this.props.handleCustom1ChangeRedux(e.target.value)} />
                                         <br></br>
-                                        <TextField type="text" label="Keyword-2" name="custom2" value={this.props.custom2} onChange={this.props.handleCustomFormChange} />
+                                        <TextField type="text" label="Keyword-2" name="custom2" value={this.props.custom2} onChange={(e) => this.props.handleCustom2ChangeRedux(e.target.value)} />
                                     </label>
                                 </div>
                             </div>
@@ -108,4 +111,15 @@ class SelectInterests extends React.Component {
     }
 }
 
-export default SelectInterests
+function msp(state) {
+    console.log("MSP", state)
+    return {
+        alertTriggered: state.alertTriggered,
+        custom1: state.custom1,
+        custom2: state.custom2
+    }
+  }
+
+const mdp = { setAlertFalseRedux, handleCustom1ChangeRedux, handleCustom2ChangeRedux }
+
+export default connect(msp, mdp)(SelectInterests)
