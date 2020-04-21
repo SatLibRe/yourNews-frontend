@@ -1,5 +1,7 @@
 import React from 'react';
 import SignInSide from "../components/SignInSide"
+import { connect } from "react-redux"
+import { setCurrentUser } from "../redux/actions"
 
 class SignUp extends React.Component {
 
@@ -33,7 +35,7 @@ class SignUp extends React.Component {
           if(response.errors){
               alert(response.errors)
           } else {
-          this.props.setUser(response)
+          this.props.setCurrentUser(response)
           this.props.history.push("/selectinterests")
           }
       })
@@ -47,4 +49,5 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp
+const mdp = { setCurrentUser }
+export default connect(null,mdp)(SignUp)
