@@ -31,7 +31,7 @@ handleFetches = () => {
 }
 
 componentDidMount(){
-    this.handleFetches()
+    // this.handleFetches()
 }
 
 componentDidUpdate(prevProps, prevState){
@@ -44,11 +44,11 @@ componentDidUpdate(prevProps, prevState){
       const {degrees,usState,city,temp, description, iconCode} = this.state 
     return (
       <div className="weather">
-          {this.props.currentUser ? 
+          {/* {this.props.currentUser ? 
             <span> Current Weather For: {city}, {usState} {temp}°, {description} <img id="weather-image" src={`https://www.weatherbit.io/static/img/icons/${iconCode}.png`}/> </span>
             :
             <Bar/>
-          }
+          } */}
       </div>
     );
   }

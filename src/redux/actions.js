@@ -45,5 +45,5 @@ export function currentUserFetch(token){
 }
 
 export function setCurrentUser(resp){
-    return {type: "SET_CURRENT_USER", payload: resp}
+    return {type: "SET_CURRENT_USER", payload: resp.user}
 }
