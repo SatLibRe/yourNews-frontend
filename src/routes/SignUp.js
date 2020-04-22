@@ -36,6 +36,7 @@ class SignUp extends React.Component {
               alert(response.errors)
           } else {
           this.props.setCurrentUser(response)
+          localStorage.token = response.token
           this.props.history.push("/selectinterests")
           }
       })
