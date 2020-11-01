@@ -1,6 +1,7 @@
 import React from 'react';
 import SignInSideLogin from "../components/SignInSideLogin"
 import { connect } from "react-redux"
+import {URL} from "../HostURL";
 
 import { setCurrentUser } from "../redux/actions"
 
@@ -20,7 +21,7 @@ class Login extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault()
-        fetch("http://localhost:3000/login", {
+        fetch(`${URL}/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json;charset=utf-8'
@@ -40,6 +41,7 @@ class Login extends React.Component {
 
 
     render(){
+        console.log(`I am the Imorted URL: ${URL}`)
         return(
             <SignInSideLogin handleLoginFormChange={this.handleLoginFormChange} handleSubmit={this.handleSubmit}/>
         )

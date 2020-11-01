@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import Alert from "@material-ui/lab/Alert";
 import Nav from "./components/Nav.js";
 import { connect } from "react-redux";
+import {URL} from "./HostURL";
 
 import {
   setAlertTrueRedux,
@@ -38,7 +39,7 @@ class App extends React.Component {
     this.props.setAlertTrueRedux();
 
     if (this.props.custom1.length >= 2) {
-      fetch("http://localhost:3000/customqueries", {
+      fetch(`${URL}/customqueries`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -49,7 +50,7 @@ class App extends React.Component {
       })
         .then((response) => response.json())
         .then((response) => {
-          fetch("http://localhost:3000/customqueryusers", {
+          fetch(`${URL}/customqueryusers`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -66,7 +67,7 @@ class App extends React.Component {
     }
 
     if (this.props.custom2.length >= 2) {
-      fetch("http://localhost:3000/customqueries", {
+      fetch(`${URL}/customqueries`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -77,7 +78,7 @@ class App extends React.Component {
       })
         .then((response) => response.json())
         .then((response) => {
-          fetch("http://localhost:3000/customqueryusers", {
+          fetch(`${URL}/customqueryusers`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -94,7 +95,7 @@ class App extends React.Component {
     }
 
     this.state.countries.forEach((country) => {
-      fetch("http://localhost:3000/countries", {
+      fetch(`${URL}/countries`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -105,7 +106,7 @@ class App extends React.Component {
       })
         .then((response) => response.json())
         .then((response) => {
-          fetch(`http://localhost:3000/countryusers`, {
+          fetch(`${URL}/countryusers`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -119,7 +120,7 @@ class App extends React.Component {
     });
 
     this.state.sources.forEach((source) => {
-      fetch(`http://localhost:3000/sources`, {
+      fetch(`${URL}/sources`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
@@ -130,7 +131,7 @@ class App extends React.Component {
       })
         .then((response) => response.json())
         .then((response) => {
-          fetch(`http://localhost:3000/usersources`, {
+          fetch(`${URL}/usersources`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json;charset=utf-8",
@@ -236,12 +237,12 @@ class App extends React.Component {
       <Router>
         <Route
           exact
-          path="/signup"
+          path="https://yournewsfrontend.herokuapp.com/signup"
           render={(props) => <SignUp {...props} setUser={this.setUser} />}
         />
         <Route
           exact
-          path="/login"
+          path="https://yournewsfrontend.herokuapp.com/login"
           render={(props) => <Login {...props} setUser={this.setUser} />}
         />
         <Route

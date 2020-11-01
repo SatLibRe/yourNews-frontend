@@ -2,6 +2,7 @@ import React from 'react';
 import SignInSide from "../components/SignInSide"
 import { connect } from "react-redux"
 import { setCurrentUser } from "../redux/actions"
+import {URL} from "../HostURL";
 
 class SignUp extends React.Component {
 
@@ -19,7 +20,7 @@ class SignUp extends React.Component {
 
     handleSubmit = e => {
       e.preventDefault()
-      fetch("http://localhost:3000/users", {
+      fetch(`${URL}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8'

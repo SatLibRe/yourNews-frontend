@@ -1,1 +1,1 @@
-const URL = "https://shrieking-pumpkin-44795.herokuapp.com"
+export const URL = "https://shrieking-pumpkin-44795.herokuapp.com"
