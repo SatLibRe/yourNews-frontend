@@ -1,3 +1,5 @@
+import {URL} from "../HostURL"
+
 export function setAlertTrueRedux(){
     return {type: "TRIGGER_ALERT_TRUE" }
 }
@@ -28,7 +30,7 @@ export function handleCustom2ChangeRedux(text){
 
 export function currentUserFetch(token){
     return function(dispatch){
-        fetch("http://localhost:3000/autologin", {
+        fetch(`${URL}/autologin`, {
             headers: {
                 "Authorization": token
               }
